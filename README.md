@@ -36,6 +36,7 @@ Do not test the booking form by opening `contact.html` straight from disk. The
 
 It is a static site, so anything that serves files will do.
 
+
 **Netlify Drop.** Go to <https://app.netlify.com/drop> and drag the whole
 folder onto the page. You get a live URL in seconds. Add a custom domain later
 under Site settings → Domain management.
