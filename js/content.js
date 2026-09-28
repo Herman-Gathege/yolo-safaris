@@ -159,8 +159,9 @@ const SITE = {
         "Six days in Kenya — Nairobi, the Maasai Mara and the coast, " +
         "guided end to end.",
       tagline: "Where the Love for Nature and Adventure meets God’s creatives…",
-      image: "assets/hero.jpg",
-      imageAlt: "An elephant and three giraffes on the open savanna",
+      /* A real photograph. images/hero1.jpeg (two elephants) is spare. */
+      image: "images/hero2.jpeg",
+      imageAlt: "Wildebeest crossing the plains at sunset beside a safari vehicle",
       primaryCta: { label: "Reserve your spot", href: "contact.html" },
       secondaryCta: { label: "See the itinerary", href: "#itinerary" },
       /* Exactly five facts. Two of them read straight from `package`. */
