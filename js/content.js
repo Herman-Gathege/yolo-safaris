@@ -159,8 +159,7 @@ const SITE = {
         "Six days in Kenya: Nairobi, the Maasai Mara and the coast, " +
         "guided end to end.",
       tagline: "Where the Love for Nature and Adventure meets God’s creatives…",
-      /* A real photograph. images/hero1.jpeg (two elephants) is spare. */
-      image: "images/hero2.jpeg",
+      image: "images/home-hero.jpeg",
       imageAlt: "Wildebeest crossing the plains at sunset beside a safari vehicle",
       primaryCta: { label: "Reserve your spot", href: "contact.html" },
       secondaryCta: { label: "See the itinerary", href: "#itinerary" },
@@ -418,6 +417,10 @@ const SITE = {
     intro:
       "A Kenya-based operator running one route, guided end to end, with part " +
       "of every booking funding community work.",
+    /* Mirrors the landing page hero. */
+    eyebrow: "Who we are",
+    image: "images/about-hero.jpeg",
+    imageAlt: "Maasai herders and elephants silhouetted against an orange sunset",
 
     story: {
       title: "Who we are",
@@ -527,7 +530,7 @@ const SITE = {
     intro:
       "Seven stops across four regions of Kenya, all of them inside the " +
       "package price.",
-    image: "images/hero1.jpeg",
+    image: "images/destinations-hero.jpeg",
     imageAlt: "Two elephants walking through tall golden grass",
     /* Cards are grouped in this order. A destination joins a group by its `region`. */
     regions: ["Nairobi & Central", "Rift Valley", "Maasai Mara", "Coast"],
@@ -571,6 +574,10 @@ const SITE = {
   contactPage: {
     title: "Contact",
     intro: "Tell us your dates and we will reply within a day.",
+    /* Mirrors the landing page hero. */
+    eyebrow: "Start here",
+    image: "images/contact-hero.jpeg",
+    imageAlt: "Elephants grazing on open savanna below a snow-capped mountain",
 
     direct: {
       title: "Talk to a person",
@@ -802,10 +809,10 @@ const SITE = {
       bestTime: "The dry months, roughly June to October, are easiest underfoot.",
       gettingThere: "Road transfer from Nyeri, included in the package.",
       timeSpent: "Day 3, one night.",
-      card: "images/destinations/lake-elementaita.svg",
-      banner: "images/destinations/lake-elementaita.svg",
-      cardAlt: "Placeholder image for Lake Elementaita",
-      bannerAlt: "Placeholder banner image for Lake Elementaita",
+      card: "images/destinations/lake-elementaita.jpg",
+      banner: "images/destinations/lake-elementaita.jpg",
+      cardAlt: "Flamingos crowding the shallows of a Rift Valley soda lake",
+      bannerAlt: "Flamingos and green hills along a Rift Valley soda lake",
       gallery: [
         { src: "images/destinations/lake-elementaita-1.svg", alt: "Placeholder photo of Lake Elementaita, 1" },
         { src: "images/destinations/lake-elementaita-2.svg", alt: "Placeholder photo of Lake Elementaita, 2" },
@@ -917,10 +924,10 @@ const SITE = {
       // coast, road transfer or a domestic flight, and say so here.
       gettingThere: "Transferred from the Maasai Mara to the coast as part of the package.",
       timeSpent: "Day 6, before Diani.",
-      card: "images/destinations/mombasa.svg",
-      banner: "images/destinations/mombasa.svg",
-      cardAlt: "Placeholder image for Mombasa",
-      bannerAlt: "Placeholder banner image for Mombasa",
+      card: "images/destinations/mombasa.jpg",
+      banner: "images/destinations/mombasa.jpg",
+      cardAlt: "Beach umbrellas and swimmers on a tropical shore",
+      bannerAlt: "Beach umbrellas and swimmers on a tropical shore",
       gallery: [
         { src: "images/destinations/mombasa-1.svg", alt: "Placeholder photo of Mombasa, 1" },
         { src: "images/destinations/mombasa-2.svg", alt: "Placeholder photo of Mombasa, 2" },
@@ -955,10 +962,10 @@ const SITE = {
       bestTime: "December to March for the driest, hottest weather.",
       gettingThere: "Short transfer south of Mombasa, included in the package.",
       timeSpent: "Day 6, the closing stop.",
-      card: "images/destinations/diani.svg",
-      banner: "images/destinations/diani.svg",
-      cardAlt: "Placeholder image for Diani",
-      bannerAlt: "Placeholder banner image for Diani",
+      card: "images/destinations/diani.jpg",
+      banner: "images/destinations/diani.jpg",
+      cardAlt: "Aerial view of a white sand beach and turquoise water",
+      bannerAlt: "Aerial view of a white sand beach and turquoise water",
       gallery: [
         { src: "images/destinations/diani-1.svg", alt: "Placeholder photo of Diani, 1" },
         { src: "images/destinations/diani-2.svg", alt: "Placeholder photo of Diani, 2" },

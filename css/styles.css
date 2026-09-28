@@ -64,7 +64,7 @@
   /* Parallax banners are a fixed height, never content height. The width term
      sets the scale on tall screens; the height term stops a banner from eating
      a short window (a phone in landscape, or a half-height browser). */
-  --parallax-height: clamp(175px, min(26vw + 110px, 46vh), 520px);
+  --parallax-height: clamp(196px, min(26vw + 122px, 56vh), 600px);
 }
 
 /* ============================================================== 2. Base == */
@@ -652,7 +652,7 @@ button {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 38, 12, 0.55), rgba(0, 38, 12, 0.82));
+  background: linear-gradient(180deg, rgba(0, 38, 12, 0.44), rgba(0, 38, 12, 0.72));
 }
 
 .parallax-layer {
@@ -723,28 +723,24 @@ button {
    have to sit above the fold. */
 @media (max-width: 479px) {
   .hero__body {
-    padding-block: var(--space-3) var(--space-4);
+    padding-block: var(--space-2) var(--space-4);
   }
 
   .hero__tagline {
-    margin-bottom: var(--space-1);
+    margin-bottom: 0;
     font-size: var(--text-xs);
   }
 
   .hero__body .actions {
-    margin-top: var(--space-3);
+    margin-top: var(--space-2);
   }
 
   .hero__body .facts {
-    margin-top: var(--space-4);
+    margin-top: var(--space-2);
   }
-}
 
-/* The very narrowest phones still on sale (a folded Galaxy Fold is 280px, an
-   iPhone SE 1 is 320px): buy back the last few pixels above the fold. */
-@media (max-width: 359px) {
-  .hero__body .facts {
-    margin-top: var(--space-3);
+  .facts li {
+    line-height: 1.3;
   }
 }
 
