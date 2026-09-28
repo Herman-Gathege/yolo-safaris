@@ -179,19 +179,35 @@ about). A hidden `_gotcha` field catches spam bots.
 ## 5. Files
 
 ```
-index.html                    home
-about.html                    about us
-destinations.html                   all destinations, grouped by region
-destinations/<slug>.html            one page per destination (seven)
-contact.html                  contact and booking form
-css/styles.css                all styling, every token in one :root block
-js/content.js                 ALL copy and data. The only file you edit
-js/app.js                     renders the pages from content.js
-js/parallax.js                the banner parallax helper
-assets/                       logo, brochure, favicons, hero and share image
-images/destinations/          destination cards (16:9) and gallery shots (3:2)
-images/team/                  guide portrait placeholders
+index.html                     home, with a parallax hero
+about.html                     about us, with a parallax hero
+destinations.html              all destinations grouped by region, with a parallax hero
+destinations/<slug>.html       one page per destination (seven), each with a parallax hero
+contact.html                   contact and booking form, with a parallax hero
+css/styles.css                 all styling, every token in one :root block
+js/content.js                  ALL copy and data. The only file you edit
+js/app.js                      renders the pages from content.js
+js/parallax.js                 the banner parallax helper
+assets/                        logo, brochure, favicons and the share image
+images/home-hero.jpeg          hero for the home page
+images/destinations-hero.jpeg  hero for the destinations page
+images/about-hero.jpeg         hero for the about page
+images/contact-hero.jpeg       hero for the contact page
+images/destinations/           destination cards (16:9), gallery shots (3:2)
+images/team/                   guide portrait placeholders
 ```
+
+### The hero images
+
+Every page opens with the same parallax banner. The four page heroes are the
+four `*-hero.jpeg` files above; Lake Elementaita, Mombasa and Diani also have
+real photos at `images/destinations/<slug>.jpg`. Nairobi, Nyeri, Maasai Mara and
+Narok still show generated placeholders, so drop a photo in as
+`images/destinations/<slug>.jpg` and point `card` and `banner` at it in
+`js/content.js`.
+
+The banner height is `--parallax-height` in `css/styles.css`, and the darkening
+over the photograph is the single `.banner::after` gradient in the same file.
 
 ### The parallax helper
 
