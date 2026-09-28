@@ -472,23 +472,24 @@ button {
   border-bottom: 1px solid var(--rule);
 }
 
+/* Phones and tablets: a two-column grid. The brand takes the left column and
+   the call to action and menu sit hard against the right edge; the open menu
+   drops onto its own full-width row underneath. */
 .header {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: var(--space-3);
   padding-block: var(--space-3);
 }
 
-/* The brand takes whatever room is left on the line (basis 0, may shrink to
-   nothing), so it can never push the buttons onto a second row. */
 .brand {
   display: flex;
-  flex: 1 1 0;
+  grid-column: 1;
+  grid-row: 1;
   align-items: center;
   gap: var(--space-3);
   min-width: 0;
-  margin-right: auto;
   color: var(--forest);
   text-decoration: none;
 }
@@ -513,8 +514,8 @@ button {
 
 .nav {
   display: none;
-  order: 3;
-  width: 100%;
+  grid-column: 1 / -1;
+  grid-row: 2;
   padding-block: var(--space-2) var(--space-3);
   border-top: 1px solid var(--rule);
 }
@@ -547,7 +548,9 @@ button {
 
 .header__actions {
   display: flex;
-  flex: none;
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
   align-items: center;
   gap: var(--space-3);
 }
@@ -623,10 +626,16 @@ button {
 }
 
 @media (min-width: 900px) {
+  /* Desktop: one flex row. Brand left, nav and actions pushed right. */
   .header {
-    flex-wrap: nowrap;
+    display: flex;
     gap: var(--space-6);
     padding-block: var(--space-4);
+  }
+
+  .brand {
+    flex: 0 1 auto;
+    margin-right: auto;
   }
 
   .brand img {
@@ -640,8 +649,6 @@ button {
 
   .nav {
     display: block;
-    order: 0;
-    width: auto;
     padding-block: 0;
     border-top: 0;
   }
