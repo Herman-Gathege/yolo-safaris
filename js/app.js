@@ -8,7 +8,7 @@
 
      <body data-page="home">                          index.html
      <body data-page="about">                         about.html
-     <body data-page="destinations">                        destinations.html
+     <body data-page="destinations">                  destinations.html
      <body data-page="destination" data-destination="maasai-mara"> destinations/maasai-mara.html
      <body data-page="contact">                       contact.html
 
@@ -107,6 +107,14 @@
     return node;
   }
 
+  /* A <figure> holding one image, for the photo sections. */
+  function figure(className, src, alt, width, height) {
+    var node = document.createElement("figure");
+    node.className = className;
+    node.appendChild(image(src, alt, width, height, true));
+    return node;
+  }
+
   /* A <div class="wrap">, which every section body sits inside. */
   function wrap() {
     return make("div", "wrap");
@@ -118,6 +126,17 @@
     if (data.title) box.appendChild(make("h2", "section__title", data.title));
     if (data.intro) box.appendChild(para("section__intro", data.intro));
     return box;
+  }
+
+  function findDestination(name) {
+    for (var i = 0; i < SITE.destinations.length; i++) {
+      if (SITE.destinations[i].slug === name) return SITE.destinations[i];
+    }
+    return null;
+  }
+
+  function destinationHref(item) {
+    return "destinations/" + item.slug + ".html";
   }
 
   /* ======================================================== Header ====== */
@@ -194,9 +213,11 @@
       return { label: item.label, href: item.href, link: true };
     })));
 
-    inner.appendChild(footerList(SITE.footer.destinationsTitle, SITE.destinations.map(function (item) {
-      return { label: item.name, href: "destinations/" + item.slug + ".html", link: true };
-    })));
+    var destinationsColumn = footerList(SITE.footer.destinationsTitle, SITE.destinations.map(function (item) {
+      return { label: item.name, href: destinationHref(item), link: true };
+    }));
+    destinationsColumn.querySelector(".footer__list").classList.add("footer__list--split");
+    inner.appendChild(destinationsColumn);
 
     inner.appendChild(footerList(SITE.footer.contactTitle, [
       { label: SITE.contact.phoneDisplay, href: SITE.contact.phoneHref, link: true },
@@ -285,6 +306,7 @@
     host.appendChild(box);
   }
 
+  /* Text on the left, a photograph on the right when the data has `image`. */
   function buildProse(host, data) {
     var box = wrap();
     var prose = make("div", "prose");
@@ -294,7 +316,37 @@
     (data.body || []).forEach(function (line) {
       prose.appendChild(para(null, line));
     });
-    box.appendChild(prose);
+
+    if (data.image) {
+      var layout = make("div", "split");
+      layout.appendChild(prose);
+      layout.appendChild(figure("split__image", data.image, data.imageAlt, 1200, 900));
+      box.appendChild(layout);
+    } else {
+      box.appendChild(prose);
+    }
+    host.appendChild(box);
+  }
+
+  /* The culture section: a short block of copy beside two photographs. */
+  function buildFeature(host, data) {
+    var box = wrap();
+    var layout = make("div", "feature");
+
+    var copy = make("div", "feature__copy");
+    copy.appendChild(make("h2", "section__title", data.title));
+    (data.body || []).forEach(function (line) {
+      copy.appendChild(para("feature__line", line));
+    });
+    layout.appendChild(copy);
+
+    var media = make("div", "feature__media");
+    (data.images || []).forEach(function (shot) {
+      media.appendChild(figure("feature__image", shot.src, shot.alt, 900, 1125));
+    });
+    layout.appendChild(media);
+
+    box.appendChild(layout);
     host.appendChild(box);
   }
 
@@ -325,19 +377,100 @@
     host.appendChild(box);
   }
 
+  /* ========================================================= Routes ===== */
+
+  function routePath(route) {
+    return route.from + " to " + route.to;
+  }
+
+  /* Two cards, one per route, each listing its stops as links. */
+  function buildRoutes(host, data) {
+    var box = wrap();
+    box.appendChild(head(data));
+    var grid = make("div", "grid grid--two");
+
+    SITE.routes.forEach(function (route) {
+      var card = make("article", "route-card");
+      card.appendChild(image(route.image, route.imageAlt, 1600, 900, true));
+
+      var body = make("div", "route-card__body");
+      body.appendChild(make("h3", "route-card__name", route.name));
+      body.appendChild(para("route-card__path", routePath(route)));
+      body.appendChild(para("route-card__line", route.line));
+
+      body.appendChild(make("h4", "route-card__stops-title", SITE.ui.routeStops));
+      var stops = make("ol", "route-card__stops");
+      route.stops.forEach(function (stopSlug) {
+        var stop = findDestination(stopSlug);
+        if (!stop) return;
+        var li = document.createElement("li");
+        li.appendChild(make("a", null, stop.name, destinationHref(stop)));
+        stops.appendChild(li);
+      });
+      body.appendChild(stops);
+
+      var cta = make("a", "btn btn--outline route-card__cta", SITE.ui.routeItinerary, "#itinerary");
+      cta.setAttribute("data-show-route", route.id);
+      body.appendChild(cta);
+
+      card.appendChild(body);
+      grid.appendChild(card);
+    });
+
+    box.appendChild(grid);
+    host.appendChild(box);
+  }
+
+  /* One tab per route. The first route is open by default. */
   function buildItinerary(host, data) {
     var box = wrap();
     box.appendChild(head(data));
-    var list = make("ol", "itinerary");
-    data.days.forEach(function (day) {
-      var item = make("li", "itinerary__item");
-      item.appendChild(make("span", "itinerary__day", day.day));
-      item.appendChild(make("span", "itinerary__line", day.line));
-      list.appendChild(item);
+
+    var tabs = make("div", "tabs");
+    tabs.setAttribute("data-tabs", "");
+
+    var list = make("div", "tabs__list");
+    list.setAttribute("role", "tablist");
+    list.setAttribute("aria-label", tokens(data.tabsLabel));
+
+    SITE.routes.forEach(function (route, index) {
+      var tab = make("button", "tabs__tab", route.name);
+      tab.type = "button";
+      tab.id = "tab-" + route.id;
+      tab.setAttribute("role", "tab");
+      tab.setAttribute("aria-controls", "panel-" + route.id);
+      tab.setAttribute("aria-selected", index === 0 ? "true" : "false");
+      tab.tabIndex = index === 0 ? 0 : -1;
+      list.appendChild(tab);
     });
-    box.appendChild(list);
+    tabs.appendChild(list);
+
+    SITE.routes.forEach(function (route, index) {
+      var panel = make("div", "tabs__panel");
+      panel.id = "panel-" + route.id;
+      panel.setAttribute("role", "tabpanel");
+      panel.setAttribute("aria-labelledby", "tab-" + route.id);
+      panel.tabIndex = 0;
+      panel.hidden = index !== 0;
+
+      panel.appendChild(para("tabs__path", routePath(route)));
+
+      var days = make("ol", "itinerary");
+      route.days.forEach(function (day) {
+        var item = make("li", "itinerary__item");
+        item.appendChild(make("span", "itinerary__day", day.day));
+        item.appendChild(make("span", "itinerary__line", day.line));
+        days.appendChild(item);
+      });
+      panel.appendChild(days);
+      tabs.appendChild(panel);
+    });
+
+    box.appendChild(tabs);
     host.appendChild(box);
   }
+
+  /* ======================================================= Booking ====== */
 
   function buildBooking(host, data) {
     var box = wrap();
@@ -380,7 +513,13 @@
     data.body.forEach(function (line) {
       prose.appendChild(para(null, line));
     });
-    box.appendChild(prose);
+
+    var intro = make("div", "impact__intro" + (data.image ? " split" : ""));
+    intro.appendChild(prose);
+    if (data.image) {
+      intro.appendChild(figure("split__image", data.image, data.imageAlt, 1200, 900));
+    }
+    box.appendChild(intro);
 
     var grid = make("div", "grid grid--three");
     data.cards.forEach(function (item) {
@@ -432,29 +571,22 @@
     body.appendChild(make("h3", "destination-card__name", item.name));
     body.appendChild(para("destination-card__blurb", item.blurb));
     body.appendChild(make("a", "destination-card__link", SITE.ui.viewDetails,
-      "destinations/" + item.slug + ".html"));
+      destinationHref(item)));
     card.appendChild(body);
     return card;
   }
 
-  function buildFeatured(host, data) {
-    var box = wrap();
-    box.appendChild(head(data));
-    var grid = make("div", "grid grid--four");
-    SITE.destinations.forEach(function (item) {
-      if (item.featured) grid.appendChild(destinationCard(item));
-    });
-    box.appendChild(grid);
-    host.appendChild(box);
-  }
-
+  /* Regions may be plain names or { name, intro } objects. */
   function buildDestinationGrid(host) {
     var box = wrap();
     SITE.destinationsPage.regions.forEach(function (region) {
-      var group = SITE.destinations.filter(function (item) { return item.region === region; });
+      var name = typeof region === "string" ? region : region.name;
+      var intro = typeof region === "string" ? "" : region.intro;
+      var group = SITE.destinations.filter(function (item) { return item.region === name; });
       if (!group.length) return;
       var block = make("section", "region");
-      block.appendChild(make("h2", "region__title", region));
+      block.appendChild(make("h2", "region__title", name));
+      if (intro) block.appendChild(para("region__intro", intro));
       var grid = make("div", "grid grid--three");
       group.forEach(function (item) { grid.appendChild(destinationCard(item)); });
       block.appendChild(grid);
@@ -510,7 +642,7 @@
   }
 
   function destinationLink(label, item) {
-    var anchor = make("a", "prevnext__link", null, "destinations/" + item.slug + ".html");
+    var anchor = make("a", "prevnext__link", null, destinationHref(item));
     anchor.appendChild(make("span", "prevnext__label", label));
     anchor.appendChild(make("span", "prevnext__name", item.name));
     return anchor;
@@ -556,10 +688,7 @@
     galleryBox.appendChild(make("h2", "section__title", page.galleryTitle));
     var gallery = make("div", "grid grid--three");
     destination.gallery.forEach(function (shot) {
-      var figure = document.createElement("figure");
-      figure.className = "gallery__item";
-      figure.appendChild(image(shot.src, shot.alt, 1200, 800, true));
-      gallery.appendChild(figure);
+      gallery.appendChild(figure("gallery__item", shot.src, shot.alt, 1200, 800));
     });
     galleryBox.appendChild(gallery);
     gallerySection.appendChild(galleryBox);
@@ -735,13 +864,14 @@
     "hero": buildHero,
     "points": buildPoints,
     "prose": buildProse,
+    "feature": buildFeature,
     "covered": buildCovered,
+    "routes": buildRoutes,
     "itinerary": buildItinerary,
     "booking": buildBooking,
     "impact": buildImpact,
     "faq": buildFaq,
     "closing": buildClosing,
-    "featured": buildFeatured,
     "destination-grid": buildDestinationGrid,
     "team": buildTeam,
     "page-head": buildPageHead,
@@ -766,7 +896,7 @@
   }
 
   function pageUrl() {
-    if (pageName === "destination" && destination) return "destinations/" + destination.slug + ".html";
+    if (pageName === "destination" && destination) return destinationHref(destination);
     if (pageName === "home") return "";
     return pageName + ".html";
   }
@@ -812,6 +942,49 @@
     each("data-src", function (node, key) { node.setAttribute("src", asset(text(key))); });
     each("data-alt", function (node, key) { node.setAttribute("alt", text(key)); });
     each("data-aria", function (node, key) { node.setAttribute("aria-label", text(key)); });
+  }
+
+  /* ========================================================== Tabs ====== */
+
+  /* The itinerary tabs: click or arrow keys to switch routes. The route cards
+     carry data-show-route, so "See the day-by-day" opens the matching tab
+     before the page scrolls to #itinerary. */
+  function initTabs() {
+    Array.prototype.forEach.call(document.querySelectorAll("[data-tabs]"), function (group) {
+      var tabs = Array.prototype.slice.call(group.querySelectorAll('[role="tab"]'));
+
+      function select(tab, focus) {
+        tabs.forEach(function (item) {
+          var on = item === tab;
+          item.setAttribute("aria-selected", on ? "true" : "false");
+          item.tabIndex = on ? 0 : -1;
+          var panel = document.getElementById(item.getAttribute("aria-controls"));
+          if (panel) panel.hidden = !on;
+        });
+        if (focus) tab.focus();
+      }
+
+      tabs.forEach(function (tab, index) {
+        tab.addEventListener("click", function () { select(tab, false); });
+        tab.addEventListener("keydown", function (event) {
+          var target = null;
+          if (event.key === "ArrowRight") target = tabs[(index + 1) % tabs.length];
+          else if (event.key === "ArrowLeft") target = tabs[(index - 1 + tabs.length) % tabs.length];
+          else if (event.key === "Home") target = tabs[0];
+          else if (event.key === "End") target = tabs[tabs.length - 1];
+          if (!target) return;
+          event.preventDefault();
+          select(target, true);
+        });
+      });
+    });
+
+    document.addEventListener("click", function (event) {
+      var trigger = event.target.closest ? event.target.closest("[data-show-route]") : null;
+      if (!trigger) return;
+      var tab = document.getElementById("tab-" + trigger.getAttribute("data-show-route"));
+      if (tab) tab.click();
+    });
   }
 
   /* ========================================================== Menu ====== */
@@ -980,6 +1153,7 @@
     renderTokens();
     renderPage();
     initMenu();
+    initTabs();
     initFloatingContact();
     initForm();
     if (window.Parallax) window.Parallax.refresh();

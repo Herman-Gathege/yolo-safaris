@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Photo coming soon">
+  <rect width="1600" height="900" fill="#0a5220"/>
+  <circle cx="1140" cy="360" r="120" fill="#f8b808" opacity="0.85"/>
+  <path d="M0 900 L0 640 L260 470 L520 640 L780 430 L1080 650 L1320 520 L1600 660 L1600 900 Z" fill="#003d13"/>
+  <path d="M0 900 L0 760 L400 650 L820 780 L1200 690 L1600 790 L1600 900 Z" fill="#00260c"/>
+  <text x="800" y="840" text-anchor="middle" font-family="system-ui, Segoe UI, Arial, sans-serif" font-size="40" font-weight="700" fill="#ffffff" opacity="0.8">Photo coming soon</text>
+</svg>

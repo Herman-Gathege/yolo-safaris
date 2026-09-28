@@ -9,6 +9,7 @@
      4  Header           11  Footer
      5  Hero and banners 12  Floating button and noscript
      6  Home sections
+     6b Routes, itinerary tabs, culture and photo splits
      7  About
 
    Mobile first. Every media query is min-width.
@@ -909,6 +910,10 @@ button {
   color: var(--muted);
 }
 
+.impact__intro {
+  margin-bottom: var(--space-6);
+}
+
 .impact__closing {
   max-width: 40ch;
   margin-top: var(--space-6);
@@ -968,10 +973,224 @@ button {
   }
 }
 
+/* ==================== 6b. Routes, itinerary tabs, culture, photo splits == */
+
+/* Route cards: photo, name, the from-to line, then the stops in order. */
+.route-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--bg);
+  box-shadow: var(--shadow-card);
+}
+
+.route-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.route-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--space-5);
+}
+
+.route-card__name {
+  font-size: var(--text-xl);
+}
+
+.route-card__path {
+  margin-top: var(--space-1);
+  color: var(--green-mid);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.route-card__line {
+  margin-top: var(--space-3);
+  color: var(--muted);
+}
+
+.route-card__stops-title {
+  margin-top: var(--space-5);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+/* The stops read as a journey: small gold dots joined by a thin line. */
+.route-card__stops {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) 0;
+  margin-top: var(--space-3);
+}
+
+.route-card__stops li {
+  display: flex;
+  align-items: center;
+  font-size: var(--text-sm);
+}
+
+.route-card__stops li + li::before {
+  content: "";
+  width: 1.1rem;
+  height: 1px;
+  margin-inline: var(--space-2);
+  background: var(--rule);
+}
+
+.route-card__stops a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--forest);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.route-card__stops a::before {
+  content: "";
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.route-card__stops a:hover {
+  color: var(--green-mid);
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+}
+
+.route-card__stops {
+  margin-bottom: var(--space-5);
+}
+
+/* margin-top: auto pins the button to the bottom, so both cards line up
+   even when one route has more stops. */
+.route-card__cta {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* Itinerary tabs: one button per route above the day list. */
+.tabs__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+.tabs__tab {
+  padding: 0.7rem 1.25rem;
+  border: 1px solid var(--green-mid);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--forest);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.tabs__tab:hover {
+  background: var(--bg-warm);
+}
+
+.tabs__tab[aria-selected="true"] {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: var(--bg);
+}
+
+.tabs__panel:focus-visible {
+  outline-offset: 6px;
+}
+
+.tabs__path {
+  margin-bottom: var(--space-4);
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+/* Culture: copy on one side, two photographs on the other, the second set
+   lower so the pair reads as a spread rather than a grid. */
+.feature {
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.feature__line {
+  max-width: 46ch;
+  margin-top: var(--space-4);
+  color: var(--muted);
+  font-size: var(--text-lg);
+}
+
+.feature__media {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.feature__image {
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.feature__image img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.feature__image:nth-child(2) {
+  margin-top: var(--space-6);
+}
+
+/* Text beside one photograph: Tembea Kenya on the home and About pages. */
+.split {
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.split__image {
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.split__image img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+@media (min-width: 900px) {
+  .feature {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: var(--space-7);
+  }
+
+  .split {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: var(--space-7);
+  }
+}
+
 /* ============================================================= 7. About == */
+/* Portraits and photos share one shape, so a landscape photo sits level
+   with the portrait cards beside it. */
 .card--person img {
   width: 100%;
-  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
@@ -985,6 +1204,13 @@ button {
   border-bottom: 1px solid var(--rule);
   margin-bottom: var(--space-5);
   font-size: var(--text-xl);
+}
+
+.region__intro {
+  max-width: var(--measure);
+  margin-top: calc(var(--space-3) * -1);
+  margin-bottom: var(--space-5);
+  color: var(--muted);
 }
 
 .destination-card {
@@ -1254,6 +1480,12 @@ button {
   gap: var(--space-2);
 }
 
+/* The destinations list is long, so it runs in two columns. */
+.footer__list--split {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--space-4);
+}
+
 .footer__list a {
   color: var(--bg);
   text-decoration: none;
@@ -1284,7 +1516,11 @@ button {
 
 @media (min-width: 960px) {
   .footer__inner {
+<<<<<<< Updated upstream
     grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+=======
+    grid-template-columns: 1.3fr 0.8fr 1.6fr 1fr;
+>>>>>>> Stashed changes
   }
 }
 
