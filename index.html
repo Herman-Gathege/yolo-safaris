@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Structure only. Every heading, price and line of copy on this page comes
+       from the SITE object in js/content.js, rendered by js/app.js. -->
+  <title>YOLO Safaris</title>
+  <meta name="description" content="">
+  <link rel="canonical" href="">
+  <meta name="theme-color" content="#003d13">
+
+  <!-- Icons generated from assets/logo.jpeg. See the README. -->
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <!-- Link previews, filled from SITE.meta and SITE.pages.home. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="YOLO Safaris">
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
+  <meta property="og:image" content="">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="home">
+  <a class="skip-link" href="#main" data-text="ui.skipToContent"></a>
+
+  <!-- SITE.nav and SITE.headerCta -->
+  <header class="site-header" data-render="header"></header>
+
+  <main id="main">
+    <!-- SITE.home.hero: the parallax banner and the five key facts -->
+    <section class="hero" data-render="hero"></section>
+
+    <!-- SITE.home.why -->
+    <section class="section" data-render="points" data-key="home.why"></section>
+
+    <!-- SITE.visits, the entries marked featured: true -->
+    <section class="section section--tint" data-render="featured" data-key="home.featured"></section>
+
+    <!-- SITE.home.itinerary -->
+    <section class="section" id="itinerary" data-render="itinerary" data-key="home.itinerary"></section>
+
+    <!-- SITE.home.included and SITE.home.notIncluded -->
+    <section class="section section--tint" data-render="covered"></section>
+
+    <!-- SITE.home.booking -->
+    <section class="section" data-render="booking" data-key="home.booking"></section>
+
+    <!-- SITE.home.impact -->
+    <section class="section section--tint" data-render="impact" data-key="home.impact"></section>
+
+    <!-- SITE.home.tripStyles -->
+    <section class="section" data-render="points" data-key="home.tripStyles"></section>
+
+    <!-- SITE.home.faq -->
+    <section class="section section--tint" data-render="faq" data-key="home.faq"></section>
+
+    <!-- SITE.home.closing -->
+    <section class="section" data-render="closing" data-key="home.closing"></section>
+  </main>
+
+  <!-- SITE.footer -->
+  <footer class="site-footer" data-render="footer"></footer>
+
+  <!-- SITE.contact, phones only -->
+  <a class="whatsapp-float" data-href="contact.whatsappHref" data-text="contact.whatsappLabel"
+     data-aria="ui.whatsappFloat" aria-label=""></a>
+
+  <!-- Without JavaScript the lists above cannot render, so the price, duration
+       and contact details are repeated here. Keep them in step with
+       SITE.package and SITE.contact in js/content.js. -->
+  <noscript>
+    <div class="noscript">
+      <p><strong>YOLO Safaris</strong> — 6 Days / 5 Nights in Kenya from USD 3,200 per guest.</p>
+      <p>Accommodation, ground transport, park fees, airport transfers and meals included.</p>
+      <p>Phone or WhatsApp <a href="tel:+254727720566">+254 727 720 566</a> ·
+         Email <a href="mailto:yolosafaris@gmail.com">yolosafaris@gmail.com</a></p>
+      <p>Please enable JavaScript to see the itinerary, visits and booking form.</p>
+    </div>
+  </noscript>
+
+  <script src="js/content.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/parallax.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Structure only. The form, its labels and the contact block are built from
+       SITE.form and SITE.contactPage in js/content.js by js/app.js. -->
+  <title>YOLO Safaris</title>
+  <meta name="description" content="">
+  <link rel="canonical" href="">
+  <meta name="theme-color" content="#003d13">
+
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="YOLO Safaris">
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
+  <meta property="og:image" content="">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="contact">
+  <a class="skip-link" href="#main" data-text="ui.skipToContent"></a>
+
+  <header class="site-header" data-render="header"></header>
+
+  <main id="main">
+    <!-- SITE.contactPage title and one line of context -->
+    <section class="section" data-render="page-head" data-key="contactPage"></section>
+
+    <!-- SITE.form (the booking form) and SITE.contactPage.direct -->
+    <section class="section section--tight" data-render="contact"></section>
+
+    <!-- SITE.contactPage.next -->
+    <section class="section" data-render="points" data-key="contactPage.next"></section>
+
+    <!-- SITE.contactPage.payment
+         TODO(owner): the deposit and payment wording in js/content.js is a
+         placeholder. Confirm the amounts and due dates before launch. -->
+    <section class="section section--tint" data-render="prose" data-key="contactPage.payment"></section>
+  </main>
+
+  <footer class="site-footer" data-render="footer"></footer>
+
+  <a class="whatsapp-float" data-href="contact.whatsappHref" data-text="contact.whatsappLabel"
+     data-aria="ui.whatsappFloat" aria-label=""></a>
+
+  <noscript>
+    <div class="noscript">
+      <p><strong>YOLO Safaris</strong> — 6 Days / 5 Nights in Kenya from USD 3,200 per guest.</p>
+      <p>The booking form needs JavaScript. Please contact us directly instead.</p>
+      <p>Phone or WhatsApp <a href="tel:+254727720566">+254 727 720 566</a> ·
+         Email <a href="mailto:yolosafaris@gmail.com">yolosafaris@gmail.com</a></p>
+    </div>
+  </noscript>
+
+  <script src="js/content.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/parallax.js"></script>
+</body>
+</html>
