@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Structure only. The regions, cards and copy come from SITE.visits and
-       SITE.visitsPage in js/content.js, rendered by js/app.js. -->
+  <!-- Structure only. The regions, cards and copy come from SITE.destinations and
+       SITE.destinationsPage in js/content.js, rendered by js/app.js. -->
   <title>YOLO Safaris</title>
   <meta name="description" content="">
   <link rel="canonical" href="">
@@ -31,20 +31,21 @@
 
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body data-page="visits">
+<body data-page="destinations">
   <a class="skip-link" href="#main" data-text="ui.skipToContent"></a>
 
   <header class="site-header" data-render="header"></header>
 
   <main id="main">
-    <!-- SITE.visitsPage title and intro line -->
-    <section class="section" data-render="page-head" data-key="visitsPage"></section>
+    <!-- SITE.destinationsPage: the same parallax hero as the landing page,
+         using images/hero1.jpeg, then the intro line -->
+    <section class="hero" data-render="page-hero" data-key="destinationsPage"></section>
 
-    <!-- SITE.visits, grouped by SITE.visitsPage.regions -->
-    <section class="section section--tight" data-render="visit-grid"></section>
+    <!-- SITE.destinations, grouped by SITE.destinationsPage.regions -->
+    <section class="section section--tight" data-render="destination-grid"></section>
 
-    <!-- SITE.visitsPage.custom -->
-    <section class="section section--tint" data-render="closing" data-key="visitsPage.custom"></section>
+    <!-- SITE.destinationsPage.custom -->
+    <section class="section section--tint" data-render="closing" data-key="destinationsPage.custom"></section>
   </main>
 
   <footer class="site-footer" data-render="footer"></footer>
@@ -54,7 +55,7 @@
 
   <noscript>
     <div class="noscript">
-      <p><strong>YOLO Safaris</strong> — 7 visits in Kenya over 6 Days / 5 Nights,
+      <p><strong>YOLO Safaris</strong>: 7 destinations in Kenya over 6 Days / 5 Nights,
          from USD 3,200 per guest.</p>
       <p>Nairobi, Nyeri, Lake Elementaita, Maasai Mara, Narok, Mombasa and Diani.</p>
       <p>Phone or WhatsApp <a href="tel:+254727720566">+254 727 720 566</a> ·

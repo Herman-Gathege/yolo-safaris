@@ -1,4 +1,4 @@
-# YOLO Safaris — website
+# YOLO Safaris website
 
 A plain HTML, CSS and JavaScript site. No build step, no npm, no frameworks, no
 external requests. It works by opening a file directly and by serving the folder
@@ -11,7 +11,7 @@ Every price, destination, FAQ entry and contact detail lives in one object in
 
 ## 1. Open the site
 
-Quickest way — just open the home page in a browser:
+Quickest way: just open the home page in a browser:
 
 ```
 open index.html          # macOS
@@ -25,7 +25,7 @@ HTTP origin:
 python3 -m http.server 8099
 ```
 
-Then visit <http://localhost:8099/>.
+Then open <http://localhost:8099/>.
 
 Do not test the booking form by opening `contact.html` straight from disk. The
 `file://` origin breaks `fetch`, so the form can only report a failure.
@@ -36,15 +36,15 @@ Do not test the booking form by opening `contact.html` straight from disk. The
 
 It is a static site, so anything that serves files will do.
 
-**Netlify Drop** — go to <https://app.netlify.com/drop> and drag the whole
+**Netlify Drop.** Go to <https://app.netlify.com/drop> and drag the whole
 folder onto the page. You get a live URL in seconds. Add a custom domain later
 under Site settings → Domain management.
 
-**GitHub Pages** — push this repo to GitHub, then Settings → Pages → Source:
+**GitHub Pages.** Push this repo to GitHub, then Settings → Pages → Source:
 *Deploy from a branch*, branch `main`, folder `/ (root)`. The site appears at
 `https://<user>.github.io/<repo>/`.
 
-**Any other static host** — upload the folder as-is. There is no build command
+**Any other static host.** Upload the folder as-is. There is no build command
 and no output directory.
 
 Once the real domain is live, update `SITE.meta.url` in `js/content.js`. It is
@@ -68,19 +68,19 @@ Nothing else needs touching. A few examples:
 | The duration | `SITE.package.duration` and `durationLong` |
 | Phone, WhatsApp, email | `SITE.contact` |
 | The hero headline | `SITE.home.hero.headline` |
-| A destination's words | the matching object in `SITE.visits` |
+| A destination's words | the matching object in `SITE.destinations` |
 | An FAQ answer | `SITE.home.faq.items` |
 | A footer line | `SITE.footer` |
 
 The price and duration are written once and reused everywhere through tokens:
-`{price}`, `{per}`, `{duration}`, `{durationLong}`, `{visitCount}`, `{phone}`,
+`{price}`, `{per}`, `{duration}`, `{durationLong}`, `{destinationCount}`, `{phone}`,
 `{email}`, `{year}`. Change the value in `SITE.package` and the hero, the
 itinerary, the FAQ, the footer and the emails all follow.
 
 ### Page titles and meta descriptions
 
-`SITE.pages` holds one entry per page. Visit pages have their own
-`metaTitle` / `metaDescription` inside `SITE.visits`.
+`SITE.pages` holds one entry per page. Destination pages have their own
+`metaTitle` / `metaDescription` inside `SITE.destinations`.
 
 ### Which sections appear on which page
 
@@ -94,18 +94,18 @@ Each page's HTML is a list of empty containers:
 `SITE`. To reorder sections, move those lines. To drop a section, delete the
 line. `data-render` names available: `header`, `footer`, `hero`, `points`,
 `prose`, `covered`, `itinerary`, `booking`, `impact`, `faq`, `closing`,
-`featured`, `visit-grid`, `team`, `page-head`, `visit`, `contact`.
+`featured`, `destination-grid`, `team`, `page-head`, `destination`, `contact`.
 
-### Adding an eighth visit
+### Adding an eighth destination
 
-1. Add one object to `SITE.visits` in `js/content.js`, copying an existing one
-   and changing the fields. Set `region` to one of `SITE.visitsPage.regions`,
+1. Add one object to `SITE.destinations` in `js/content.js`, copying an existing one
+   and changing the fields. Set `region` to one of `SITE.destinationsPage.regions`,
    and add `featured: true` if it should also appear on the home page.
-2. Copy `visits/diani.html` to `visits/<new-slug>.html`.
-3. In the new file, change `data-visit="diani"` on the `<body>` tag to your new
+2. Copy `destinations/diani.html` to `destinations/<new-slug>.html`.
+3. In the new file, change `data-destination="diani"` on the `<body>` tag to your new
    slug. That is the only line that differs.
 
-The nav, the visits grid, the footer list, the home cards and the
+The nav, the destinations grid, the footer list, the home cards and the
 previous/next links all pick it up automatically.
 
 ### Swapping a placeholder for a real photo
@@ -114,11 +114,11 @@ Every image slot already has a generated placeholder behind it, so nothing is
 ever broken.
 
 1. Drop your photo into the matching folder, keeping the same name but using
-   `.jpg` — for example `images/destinations/maasai-mara.jpg`.
+   `.jpg`, for example `images/destinations/maasai-mara.jpg`.
 2. Point the entry in `js/content.js` at the new file:
 
 ```js
-card:   "images/destinations/maasai-mara.jpg",   // 16:9, visit cards and banners
+card:   "images/destinations/maasai-mara.jpg",   // 16:9, destination cards and banners
 banner: "images/destinations/maasai-mara.jpg",
 gallery: [
   { src: "images/destinations/maasai-mara-1.jpg", alt: "..." },   // 3:2
@@ -129,7 +129,7 @@ gallery: [
 3. Update `alt` to describe the photograph, and leave `width` and `height`
    alone unless your file has a different shape.
 
-Slot sizes: **16:9** for banners and visit cards (`1600 x 900`), **3:2** for
+Slot sizes: **16:9** for banners and destination cards (`1600 x 900`), **3:2** for
 gallery shots (`1200 x 800`), **4:5** for the guide portraits in
 `images/team/` (`900 x 1125`).
 
@@ -159,10 +159,10 @@ to email or WhatsApp instead. That is the `REPLACE_WITH_FORM_ID` value in
 
    Open <http://localhost:8099/contact.html>, fill the form in with your own
    details, and send it.
-6. Confirm two things: the page shows *"Thank you — we'll reply within 24
+6. Confirm two things: the page shows *"Thank you. We'll reply within 24
    hours."* without navigating away, and the enquiry arrives at
    `yolosafaris@gmail.com`. Reply to that email to check it goes back to the
-   guest — Formspree uses the `email` field as the Reply-To address.
+   guest. Formspree uses the `email` field as the Reply-To address.
 
 If anything fails, the page keeps the guest's details and shows the direct
 email and WhatsApp links underneath, so nobody is ever stranded.
@@ -181,15 +181,15 @@ about). A hidden `_gotcha` field catches spam bots.
 ```
 index.html                    home
 about.html                    about us
-visits.html                   all visits, grouped by region
-visits/<slug>.html            one page per visit (seven)
+destinations.html                   all destinations, grouped by region
+destinations/<slug>.html            one page per destination (seven)
 contact.html                  contact and booking form
 css/styles.css                all styling, every token in one :root block
-js/content.js                 ALL copy and data — the only file you edit
+js/content.js                 ALL copy and data. The only file you edit
 js/app.js                     renders the pages from content.js
 js/parallax.js                the banner parallax helper
 assets/                       logo, brochure, favicons, hero and share image
-images/destinations/          visit cards (16:9) and gallery shots (3:2)
+images/destinations/          destination cards (16:9) and gallery shots (3:2)
 images/team/                  guide portrait placeholders
 ```
 
@@ -219,11 +219,11 @@ Search `js/content.js` for `TODO(owner)`.
 3. **Deposit and balance terms.** `SITE.contactPage.payment` is generic until
    the real amounts and due date are set.
 4. **Cancellation and refund wording.** `SITE.home.booking.note`.
-5. **Formspree form ID.** `SITE.form.endpoint` — see section 4 above.
+5. **Formspree form ID.** `SITE.form.endpoint`. See section 4 above.
 6. **Guides.** `SITE.about.team` has placeholder portraits and no names.
    Supply real names, roles and photographs.
 7. **The Maasai Mara to the coast leg.** Confirm whether guests travel by road
-   or by a domestic flight, then say so in the Mombasa entry of `SITE.visits`.
+   or by a domestic flight, then say so in the Mombasa entry of `SITE.destinations`.
 8. **Payment methods.** `SITE.home.faq.items` says details are sent on
    confirmation; name the methods you actually accept.
 9. **Group size.** The FAQ answer is generic until you set a usual and maximum

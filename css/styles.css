@@ -1,10 +1,10 @@
 /* ==========================================================================
-   YOLO Safaris — stylesheet
+   YOLO Safaris stylesheet
    --------------------------------------------------------------------------
    Order matches the pages:
 
-     1  Tokens            8  Visits grid and cards
-     2  Base              9  Visit detail
+     1  Tokens            8  Destinations grid and cards
+     2  Base              9  Destination detail
      3  Shared pieces    10  Contact and the booking form
      4  Header           11  Footer
      5  Hero and banners 12  Floating button and noscript
@@ -708,6 +708,17 @@ button {
   margin-top: var(--space-5);
 }
 
+/* Inner-page hero: only a line of text sits under the banner, so the next
+   section supplies the breathing room instead. */
+.hero__body.page-hero__body {
+  padding-block: var(--space-5) 0;
+}
+
+.hero__body.page-hero__body .hero__tagline {
+  max-width: 52ch;
+  margin-bottom: 0;
+}
+
 /* Phones: every pixel of the first screen counts, because the five key facts
    have to sit above the fold. */
 @media (max-width: 479px) {
@@ -892,7 +903,7 @@ button {
 }
 
 .faq details[open] .faq__question::after {
-  content: "–";
+  content: "−";
 }
 
 .faq__answer {
@@ -914,7 +925,7 @@ button {
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
-/* ================================================= 8. Visits & cards ===== */
+/* ================================================= 8. Destinations & cards ===== */
 .region + .region {
   margin-top: var(--space-7);
 }
@@ -926,7 +937,7 @@ button {
   font-size: var(--text-xl);
 }
 
-.visit-card {
+.destination-card {
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -935,29 +946,29 @@ button {
   box-shadow: var(--shadow-card);
 }
 
-.visit-card img {
+.destination-card img {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
 }
 
-.visit-card__body {
+.destination-card__body {
   display: flex;
   flex-direction: column;
   flex: 1;
   padding: var(--space-5);
 }
 
-.visit-card__name {
+.destination-card__name {
   font-size: var(--text-lg);
 }
 
-.visit-card__blurb {
+.destination-card__blurb {
   margin-top: var(--space-2);
   color: var(--muted);
 }
 
-.visit-card__link {
+.destination-card__link {
   margin-top: var(--space-4);
   color: var(--green-mid);
   font-weight: 700;
@@ -965,8 +976,8 @@ button {
   text-decoration-thickness: 2px;
 }
 
-/* ====================================================== 9. Visit detail == */
-.banner--visit {
+/* ====================================================== 9. Destination detail == */
+.banner--destination {
   height: var(--parallax-height);
 }
 

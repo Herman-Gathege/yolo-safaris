@@ -1,5 +1,5 @@
 /* ==========================================================================
-   YOLO Safaris — app
+   YOLO Safaris app
    --------------------------------------------------------------------------
    Reads the SITE object from js/content.js and fills every element marked
    data-render="..." in the page. There is no site copy in this file.
@@ -8,8 +8,8 @@
 
      <body data-page="home">                          index.html
      <body data-page="about">                         about.html
-     <body data-page="visits">                        visits.html
-     <body data-page="visit" data-visit="maasai-mara"> visits/maasai-mara.html
+     <body data-page="destinations">                        destinations.html
+     <body data-page="destination" data-destination="maasai-mara"> destinations/maasai-mara.html
      <body data-page="contact">                       contact.html
 
    Every value is written with textContent, never innerHTML, so text from
@@ -26,15 +26,15 @@
   /* ================================================== Page context ====== */
 
   var pageName = document.body.getAttribute("data-page") || "home";
-  var base = pageName === "visit" ? "../" : "";
-  var slug = document.body.getAttribute("data-visit") || "";
-  var visitIndex = -1;
-  SITE.visits.forEach(function (item, index) {
-    if (item.slug === slug) visitIndex = index;
+  var base = pageName === "destination" ? "../" : "";
+  var slug = document.body.getAttribute("data-destination") || "";
+  var destinationIndex = -1;
+  SITE.destinations.forEach(function (item, index) {
+    if (item.slug === slug) destinationIndex = index;
   });
-  var visit = visitIndex > -1 ? SITE.visits[visitIndex] : null;
+  var destination = destinationIndex > -1 ? SITE.destinations[destinationIndex] : null;
 
-  var HERO_SPEED = "0.12";  /* subtle: keep within 0.05 – 0.2 */
+  var HERO_SPEED = "0.12";  /* subtle: keep within 0.05 to 0.2 */
   var ABSOLUTE = /^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i;
 
   /* ======================================================= Helpers ====== */
@@ -56,11 +56,11 @@
         per: SITE.package.per,
         duration: SITE.package.duration,
         durationLong: SITE.package.durationLong,
-        visitCount: SITE.visits.length,
+        destinationCount: SITE.destinations.length,
         phone: SITE.contact.phoneDisplay,
         email: SITE.contact.email,
         year: new Date().getFullYear(),
-        name: visit ? visit.name : "",
+        name: destination ? destination.name : "",
       };
       return Object.prototype.hasOwnProperty.call(map, name) ? map[name] : match;
     });
@@ -70,7 +70,7 @@
     return tokens(pick(path));
   }
 
-  /* Page links are written from the site root, so visit pages need "../". */
+  /* Page links are written from the site root, so destination pages need "../". */
   function link(href) {
     if (!href || ABSOLUTE.test(href)) return href;
     return base + href;
@@ -137,7 +137,7 @@
     SITE.nav.forEach(function (item) {
       var li = document.createElement("li");
       var anchor = make("a", "nav__link", item.label, item.href);
-      if (item.page === pageName || (pageName === "visit" && item.page === "visits")) {
+      if (item.page === pageName || (pageName === "destination" && item.page === "destinations")) {
         anchor.setAttribute("aria-current", "page");
         anchor.classList.add("is-current");
       }
@@ -194,8 +194,8 @@
       return { label: item.label, href: item.href, link: true };
     })));
 
-    inner.appendChild(footerList(SITE.footer.visitsTitle, SITE.visits.map(function (item) {
-      return { label: item.name, href: "visits/" + item.slug + ".html", link: true };
+    inner.appendChild(footerList(SITE.footer.destinationsTitle, SITE.destinations.map(function (item) {
+      return { label: item.name, href: "destinations/" + item.slug + ".html", link: true };
     })));
 
     inner.appendChild(footerList(SITE.footer.contactTitle, [
@@ -260,6 +260,16 @@
   }
 
   /* ======================================================== Sections ==== */
+
+  /* An inner page that opens like the landing page: the same parallax banner
+     with the page name over the photograph, then a line under it. */
+  function buildPageHero(host, data) {
+    host.appendChild(banner(data.image, data.imageAlt, data.eyebrow, data.title, HERO_SPEED));
+    var body = wrap();
+    body.classList.add("hero__body", "page-hero__body");
+    body.appendChild(para("hero__tagline", data.intro));
+    host.appendChild(body);
+  }
 
   function buildPoints(host, data) {
     var box = wrap();
@@ -413,16 +423,16 @@
     host.appendChild(box);
   }
 
-  /* ========================================================= Visits ===== */
+  /* ========================================================= Destinations ===== */
 
-  function visitCard(item) {
-    var card = make("article", "visit-card");
+  function destinationCard(item) {
+    var card = make("article", "destination-card");
     card.appendChild(image(item.card, item.cardAlt, 1600, 900, true));
-    var body = make("div", "visit-card__body");
-    body.appendChild(make("h3", "visit-card__name", item.name));
-    body.appendChild(para("visit-card__blurb", item.blurb));
-    body.appendChild(make("a", "visit-card__link", SITE.ui.viewDetails,
-      "visits/" + item.slug + ".html"));
+    var body = make("div", "destination-card__body");
+    body.appendChild(make("h3", "destination-card__name", item.name));
+    body.appendChild(para("destination-card__blurb", item.blurb));
+    body.appendChild(make("a", "destination-card__link", SITE.ui.viewDetails,
+      "destinations/" + item.slug + ".html"));
     card.appendChild(body);
     return card;
   }
@@ -431,22 +441,22 @@
     var box = wrap();
     box.appendChild(head(data));
     var grid = make("div", "grid grid--four");
-    SITE.visits.forEach(function (item) {
-      if (item.featured) grid.appendChild(visitCard(item));
+    SITE.destinations.forEach(function (item) {
+      if (item.featured) grid.appendChild(destinationCard(item));
     });
     box.appendChild(grid);
     host.appendChild(box);
   }
 
-  function buildVisitGrid(host) {
+  function buildDestinationGrid(host) {
     var box = wrap();
-    SITE.visitsPage.regions.forEach(function (region) {
-      var group = SITE.visits.filter(function (item) { return item.region === region; });
+    SITE.destinationsPage.regions.forEach(function (region) {
+      var group = SITE.destinations.filter(function (item) { return item.region === region; });
       if (!group.length) return;
       var block = make("section", "region");
       block.appendChild(make("h2", "region__title", region));
       var grid = make("div", "grid grid--three");
-      group.forEach(function (item) { grid.appendChild(visitCard(item)); });
+      group.forEach(function (item) { grid.appendChild(destinationCard(item)); });
       block.appendChild(grid);
       box.appendChild(block);
     });
@@ -477,7 +487,7 @@
     host.appendChild(box);
   }
 
-  /* ==================================================== Visit detail === */
+  /* ==================================================== Destination detail === */
 
   function bulletPanel(title, items) {
     var panel = make("div", "panel");
@@ -499,32 +509,32 @@
     return list;
   }
 
-  function visitLink(label, item) {
-    var anchor = make("a", "prevnext__link", null, "visits/" + item.slug + ".html");
+  function destinationLink(label, item) {
+    var anchor = make("a", "prevnext__link", null, "destinations/" + item.slug + ".html");
     anchor.appendChild(make("span", "prevnext__label", label));
     anchor.appendChild(make("span", "prevnext__name", item.name));
     return anchor;
   }
 
-  function buildVisit(host) {
-    if (!visit) return;
-    var page = SITE.visitPage;
-    var count = SITE.visits.length;
-    var previous = SITE.visits[(visitIndex - 1 + count) % count];
-    var next = SITE.visits[(visitIndex + 1) % count];
+  function buildDestination(host) {
+    if (!destination) return;
+    var page = SITE.destinationPage;
+    var count = SITE.destinations.length;
+    var previous = SITE.destinations[(destinationIndex - 1 + count) % count];
+    var next = SITE.destinations[(destinationIndex + 1) % count];
 
-    host.appendChild(banner(visit.banner, visit.bannerAlt, visit.region, visit.name,
-      HERO_SPEED, "banner--visit"));
+    host.appendChild(banner(destination.banner, destination.bannerAlt, destination.region, destination.name,
+      HERO_SPEED, "banner--destination"));
 
     var introSection = make("section", "section section--tight");
-    buildProse(introSection, { body: [visit.intro] });
+    buildProse(introSection, { body: [destination.intro] });
     host.appendChild(introSection);
 
     var columnsSection = make("section", "section section--tight");
     var columns = wrap();
     var grid = make("div", "grid grid--two");
-    grid.appendChild(bulletPanel(page.whyTitle, visit.whyGo));
-    grid.appendChild(bulletPanel(page.doTitle, visit.doThis));
+    grid.appendChild(bulletPanel(page.whyTitle, destination.whyGo));
+    grid.appendChild(bulletPanel(page.doTitle, destination.doThis));
     columns.appendChild(grid);
     columnsSection.appendChild(columns);
     host.appendChild(columnsSection);
@@ -533,9 +543,9 @@
     var facts = wrap();
     facts.appendChild(make("h2", "section__title", page.factsTitle));
     facts.appendChild(definitionRows([
-      [page.bestTimeLabel, visit.bestTime],
-      [page.gettingThereLabel, visit.gettingThere],
-      [page.timeSpentLabel, visit.timeSpent],
+      [page.bestTimeLabel, destination.bestTime],
+      [page.gettingThereLabel, destination.gettingThere],
+      [page.timeSpentLabel, destination.timeSpent],
     ]));
     facts.appendChild(make("p", "note", page.includedNote));
     factsSection.appendChild(facts);
@@ -545,7 +555,7 @@
     var galleryBox = wrap();
     galleryBox.appendChild(make("h2", "section__title", page.galleryTitle));
     var gallery = make("div", "grid grid--three");
-    visit.gallery.forEach(function (shot) {
+    destination.gallery.forEach(function (shot) {
       var figure = document.createElement("figure");
       figure.className = "gallery__item";
       figure.appendChild(image(shot.src, shot.alt, 1200, 800, true));
@@ -558,9 +568,9 @@
     var navSection = make("section", "section section--tight");
     var navBox = wrap();
     navBox.classList.add("prevnext");
-    navBox.appendChild(visitLink(page.previousLabel, previous));
-    navBox.appendChild(make("a", "prevnext__all", page.allVisitsLabel, "visits.html"));
-    navBox.appendChild(visitLink(page.nextLabel, next));
+    navBox.appendChild(destinationLink(page.previousLabel, previous));
+    navBox.appendChild(make("a", "prevnext__all", page.allDestinationsLabel, "destinations.html"));
+    navBox.appendChild(destinationLink(page.nextLabel, next));
     navSection.appendChild(navBox);
     host.appendChild(navSection);
 
@@ -732,10 +742,11 @@
     "faq": buildFaq,
     "closing": buildClosing,
     "featured": buildFeatured,
-    "visit-grid": buildVisitGrid,
+    "destination-grid": buildDestinationGrid,
     "team": buildTeam,
     "page-head": buildPageHead,
-    "visit": buildVisit,
+    "page-hero": buildPageHero,
+    "destination": buildDestination,
     "contact": buildContact,
   };
 
@@ -755,7 +766,7 @@
   }
 
   function pageUrl() {
-    if (pageName === "visit" && visit) return "visits/" + visit.slug + ".html";
+    if (pageName === "destination" && destination) return "destinations/" + destination.slug + ".html";
     if (pageName === "home") return "";
     return pageName + ".html";
   }
@@ -763,8 +774,8 @@
   function renderMeta() {
     var pages = SITE.pages;
     var fallback = pages[pageName] || pages.home;
-    var title = pageName === "visit" && visit ? visit.metaTitle : fallback.title;
-    var description = pageName === "visit" && visit ? visit.metaDescription : fallback.description;
+    var title = pageName === "destination" && destination ? destination.metaTitle : fallback.title;
+    var description = pageName === "destination" && destination ? destination.metaDescription : fallback.description;
     var url = absolute(pageUrl());
     var shareImage = absolute(SITE.meta.shareImage);
 

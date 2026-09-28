@@ -1,25 +1,25 @@
 /* ==========================================================================
-   YOLO Safaris — site content
+   YOLO Safaris site content
    --------------------------------------------------------------------------
-   Every string, price, visit, FAQ entry and contact detail on the site lives
+   Every string, price, destination, FAQ entry and contact detail on the site lives
    in the single SITE object below. js/app.js and js/parallax.js read it and
    build the pages. Edit this file and nothing else.
 
    Values are written once and reused through tokens, so a price or a phone
    number only has to be right in one place:
 
-     {price}  {per}  {duration}  {durationLong}  {visitCount}  {phone}
+     {price}  {per}  {duration}  {durationLong}  {destinationCount}  {phone}
      {email}  {year}
 
    How to add an eighth destination
    --------------------------------------------------------------------------
-     1. Add one object to SITE.visits below (copy an existing one).
-     2. Copy visits/diani.html to visits/<new-slug>.html and change the
-        data-visit="..." attribute on <body>.
-     That is all. The nav, the visit grid, the home cards, the footer and the
+     1. Add one object to SITE.destinations below (copy an existing one).
+     2. Copy destinations/diani.html to destinations/<new-slug>.html and change the
+        data-destination="..." attribute on <body>.
+     That is all. The nav, the destination grid, the home cards, the footer and the
      previous/next links all follow automatically.
 
-   OPEN ITEMS FOR THE OWNER — search for "TODO(owner)" to find each one.
+   OPEN ITEMS FOR THE OWNER. Search for "TODO(owner)" to find each one.
    --------------------------------------------------------------------------
      1. Final duration. The printed brochure says "7 Day Stay in Kenya"; this
         build says 6 days / 5 nights. Fix SITE.package.duration.
@@ -29,7 +29,7 @@
      5. Formspree form ID, see SITE.form.endpoint (README has the steps).
      6. Guide names, roles and real photographs, see SITE.about.team.
      7. The Maasai Mara to the coast leg: road transfer or domestic flight,
-        see SITE.visits (mombasa.gettingThere).
+        see SITE.destinations (mombasa.gettingThere).
      8. Real photography. Every image slot is a generated placeholder except
         the home hero and the share image, which are crops from the brochure.
      9. Site URL once the domain is live, see SITE.meta.url.
@@ -50,24 +50,24 @@ const SITE = {
     shareImage: "assets/social-share.jpg",
   },
 
-  /* Page titles and meta descriptions. `visit` is the fallback used by the
-     seven visit pages, which override it from their own entry in `visits`. */
+  /* Page titles and meta descriptions. `destination` is the fallback used by the
+     seven destination pages, which override it from their own entry in `destinations`. */
   pages: {
     home: {
-      title: "YOLO Safaris — {duration} in Kenya from {price}",
+      title: "YOLO Safaris | {duration} in Kenya from {price}",
       description:
         "A guided {durationLong} safari across Nairobi, Nyeri, Lake " +
         "Elementaita, the Maasai Mara, Narok, Mombasa and Diani. From {price} " +
         "per guest, with accommodation, park fees and meals included.",
     },
     about: {
-      title: "About YOLO Safaris — a Kenya-based safari operator",
+      title: "About YOLO Safaris, a Kenya-based safari operator",
       description:
         "Who we are, where we operate in Kenya, and how a portion of every " +
         "booking funds community charity work through Tembea Kenya.",
     },
-    visits: {
-      title: "Visits — seven stops in Kenya | YOLO Safaris",
+    destinations: {
+      title: "Destinations: seven stops in Kenya | YOLO Safaris",
       description:
         "Nairobi, Nyeri, Lake Elementaita, the Maasai Mara, Narok, Mombasa " +
         "and Diani, grouped by region and included in the package price.",
@@ -78,8 +78,8 @@ const SITE = {
         "Send a booking enquiry for the {durationLong} Kenya safari from " +
         "{price} per guest. Email, phone and WhatsApp, or use the form.",
     },
-    visit: {
-      title: "Visits | YOLO Safaris",
+    destination: {
+      title: "Destinations | YOLO Safaris",
       description: "A stop on the YOLO Safaris route through Kenya.",
     },
   },
@@ -91,7 +91,7 @@ const SITE = {
     logo: "assets/logo.jpeg",
     logoAlt: "YOLO Safaris logo",
     tagline: "Where the Love for Nature and Adventure meets God’s creatives…",
-    positioning: "More than a holiday — a journey with purpose.",
+    positioning: "More than a holiday, a journey with purpose.",
   },
 
   /* Price and duration, once each. */
@@ -122,14 +122,14 @@ const SITE = {
     menuClose: "Close menu",
     whatsappFloat: "Chat with YOLO Safaris on WhatsApp",
     viewDetails: "View details",
-    visitCount: "{visitCount} visits",
+    destinationCount: "{destinationCount} destinations",
     includedInPrice: "Included in the package price",
   },
 
   nav: [
     { label: "Home", href: "index.html", page: "home" },
     { label: "About", href: "about.html", page: "about" },
-    { label: "Visits", href: "visits.html", page: "visits" },
+    { label: "Destinations", href: "destinations.html", page: "destinations" },
     { label: "Contact", href: "contact.html", page: "contact" },
   ],
   headerCta: { label: "Book / Enquire", href: "contact.html" },
@@ -137,7 +137,7 @@ const SITE = {
   footer: {
     blurb: "Kenya-based safari operator. {durationLong} in Kenya from {price} per guest.",
     exploreTitle: "Explore",
-    visitsTitle: "Visits",
+    destinationsTitle: "Destinations",
     contactTitle: "Contact",
     smallPrint:
       "© {year} YOLO Safaris. All prices in US dollars. Package price and " +
@@ -154,9 +154,9 @@ const SITE = {
   home: {
 
     hero: {
-      eyebrow: "More than a holiday — a journey with purpose.",
+      eyebrow: "More than a holiday, a journey with purpose.",
       headline:
-        "Six days in Kenya — Nairobi, the Maasai Mara and the coast, " +
+        "Six days in Kenya: Nairobi, the Maasai Mara and the coast, " +
         "guided end to end.",
       tagline: "Where the Love for Nature and Adventure meets God’s creatives…",
       /* A real photograph. images/hero1.jpeg (two elephants) is spare. */
@@ -169,7 +169,7 @@ const SITE = {
         "From {price} {per}",
         "{duration}",
         "Accommodation included",
-        "{visitCount} destinations",
+        "{destinationCount} destinations",
         "Part of every booking goes to charity",
       ],
     },
@@ -230,7 +230,7 @@ const SITE = {
         },
       ],
       // TODO(owner): confirm the day-by-day routing, and see the note on the
-      // Maasai Mara to coast leg under visits (mombasa).
+      // Maasai Mara to coast leg under destinations (mombasa).
     },
 
     included: {
@@ -308,7 +308,7 @@ const SITE = {
 
     impact: {
       title: "Tembea Kenya",
-      lead: "Tembea Kenya — empowering the lives of people.",
+      lead: "Tembea Kenya: empowering the lives of people.",
       // TODO(owner): confirm this is the approved wording for the charity
       // promise. Do not state a percentage.
       body: [
@@ -405,7 +405,7 @@ const SITE = {
       title: "Ready when you are",
       line: "Send us your dates and we will confirm the route, the price and what is included.",
       cta: { label: "Reserve your spot", href: "contact.html" },
-      secondary: { label: "See all visits", href: "visits.html" },
+      secondary: { label: "See all destinations", href: "destinations.html" },
     },
   },
 
@@ -437,7 +437,7 @@ const SITE = {
 
     culture: {
       title: "Tembea Kenya",
-      lead: "Tembea Kenya — empowering the lives of people.",
+      lead: "Tembea Kenya: empowering the lives of people.",
       // TODO(owner): confirm this is the approved wording for the charity promise.
       body: [
         "A portion of every booking goes to community charity work in Kenya.",
@@ -512,18 +512,24 @@ const SITE = {
       title: "Travel with us",
       line: "Ask us anything about the route, the price or the charity work before you book.",
       cta: { label: "Send an enquiry", href: "contact.html" },
-      secondary: { label: "See the visits", href: "visits.html" },
+      secondary: { label: "See the destinations", href: "destinations.html" },
     },
   },
 
   /* ==================================================================== */
-  /* Visits index                                                         */
+  /* Destinations index                                                         */
   /* ==================================================================== */
 
-  visitsPage: {
-    title: "Visits",
-    intro: "Seven stops across four regions of Kenya.",
-    /* Cards are grouped in this order. A visit joins a group by its `region`. */
+  destinationsPage: {
+    /* Mirrors the landing page hero, with the second of the two photographs. */
+    eyebrow: "Where the trip goes",
+    title: "Destinations",
+    intro:
+      "Seven stops across four regions of Kenya, all of them inside the " +
+      "package price.",
+    image: "images/hero1.jpeg",
+    imageAlt: "Two elephants walking through tall golden grass",
+    /* Cards are grouped in this order. A destination joins a group by its `region`. */
     regions: ["Nairobi & Central", "Rift Valley", "Maasai Mara", "Coast"],
     cardLink: "View details",
     custom: {
@@ -536,21 +542,21 @@ const SITE = {
   },
 
   /* ==================================================================== */
-  /* Visit detail pages — shared labels                                   */
+  /* Destination detail pages: shared labels                                   */
   /* ==================================================================== */
 
-  visitPage: {
+  destinationPage: {
     whyTitle: "Why go",
     doTitle: "What you will do there",
     factsTitle: "Practical notes",
-    bestTimeLabel: "Best time to visit",
+    bestTimeLabel: "Best time to go",
     gettingThereLabel: "How you get there",
     timeSpentLabel: "Time in the package",
     includedNote: "This stop is included in the package price of {price} {per}.",
     galleryTitle: "Photos",
-    previousLabel: "Previous visit",
-    nextLabel: "Next visit",
-    allVisitsLabel: "All visits",
+    previousLabel: "Previous destination",
+    nextLabel: "Next destination",
+    allDestinationsLabel: "All destinations",
     cta: {
       title: "Add {name} to your trip",
       line: "Send us your dates and we will confirm the full route and what is included.",
@@ -644,7 +650,7 @@ const SITE = {
       dates: {
         label: "Travel dates",
         type: "text",
-        placeholder: "For example: 12–18 July 2027",
+        placeholder: "For example: 12 to 18 July 2027",
         required: true,
       },
       guests: {
@@ -665,7 +671,7 @@ const SITE = {
         label: "Message (optional)",
         type: "textarea",
         rows: 4,
-        placeholder: "Anything we should know — dietary needs, children travelling, dates you are flexible on.",
+        placeholder: "Anything we should know: dietary needs, children travelling, dates you are flexible on.",
         required: false,
       },
     },
@@ -677,7 +683,7 @@ const SITE = {
 
     submit: "Send enquiry",
     sending: "Sending…",
-    success: "Thank you — we’ll reply within 24 hours.",
+    success: "Thank you. We’ll reply within 24 hours.",
     errorGeneral: "We could not send your enquiry. Please email or WhatsApp us instead.",
     placeholderNotice:
       "The booking form is not connected yet. Please email or WhatsApp us " +
@@ -686,21 +692,21 @@ const SITE = {
   },
 
   /* ==================================================================== */
-  /* The seven visits                                                     */
+  /* The seven destinations                                                     */
   /* ---------------------------------------------------------------------- */
   /* featured: true  -> also shown as a card on the home page.             */
-  /* region          -> which group it sits in on visits.html.             */
+  /* region          -> which group it sits in on destinations.html.             */
   /* card / banner   -> 16:9.  gallery -> 3:2.                             */
   /* ==================================================================== */
 
-  visits: [
+  destinations: [
     {
       slug: "nairobi",
       name: "Nairobi",
       region: "Nairobi & Central",
       featured: true,
       blurb: "Start here: the Museum of Illusions and the Giraffe Centre.",
-      metaTitle: "Nairobi — Museum of Illusions and the Giraffe Centre | YOLO Safaris",
+      metaTitle: "Nairobi: Museum of Illusions and the Giraffe Centre | YOLO Safaris",
       metaDescription:
         "Day 1 of the YOLO Safaris route: airport transfer, the Giraffe " +
         "Centre and the Museum of Illusions in Nairobi.",
@@ -737,7 +743,7 @@ const SITE = {
       name: "Nyeri",
       region: "Nairobi & Central",
       blurb: "Highland town between Mount Kenya and the Aberdare range.",
-      metaTitle: "Nyeri — central highlands stop | YOLO Safaris",
+      metaTitle: "Nyeri: central highlands stop | YOLO Safaris",
       metaDescription:
         "Day 2 of the YOLO Safaris route: the drive from Nairobi into Kenya’s " +
         "central highlands for a night in Nyeri.",
@@ -775,7 +781,7 @@ const SITE = {
       region: "Rift Valley",
       featured: true,
       blurb: "Rift Valley soda lake, known for its birdlife.",
-      metaTitle: "Lake Elementaita — Rift Valley birdlife | YOLO Safaris",
+      metaTitle: "Lake Elementaita: Rift Valley birdlife | YOLO Safaris",
       metaDescription:
         "Day 3 of the YOLO Safaris route: the Great Rift Valley escarpment " +
         "and an afternoon on the shore of Lake Elementaita.",
@@ -812,8 +818,8 @@ const SITE = {
       name: "Maasai Mara",
       region: "Maasai Mara",
       featured: true,
-      blurb: "Kenya’s best-known reserve — big cats, plains and the great migration.",
-      metaTitle: "Maasai Mara — game drives and the great migration | YOLO Safaris",
+      blurb: "Kenya’s best-known reserve: big cats, plains and the great migration.",
+      metaTitle: "Maasai Mara: game drives and the great migration | YOLO Safaris",
       metaDescription:
         "Days 4 and 5 of the YOLO Safaris route: two days of morning and " +
         "afternoon game drives in the Maasai Mara.",
@@ -851,7 +857,7 @@ const SITE = {
       name: "Narok",
       region: "Rift Valley",
       blurb: "Market town on the road into the Maasai Mara.",
-      metaTitle: "Narok — the road into the Maasai Mara | YOLO Safaris",
+      metaTitle: "Narok: the road into the Maasai Mara | YOLO Safaris",
       metaDescription:
         "A stop on day 4 of the YOLO Safaris route, where the road into the " +
         "Maasai Mara passes through the market town of Narok.",
@@ -888,7 +894,7 @@ const SITE = {
       name: "Mombasa",
       region: "Coast",
       blurb: "Indian Ocean port city with old-town streets and beaches.",
-      metaTitle: "Mombasa — old town and the Indian Ocean | YOLO Safaris",
+      metaTitle: "Mombasa: old town and the Indian Ocean | YOLO Safaris",
       metaDescription:
         "The coastal close of the YOLO Safaris route: Mombasa old town, the " +
         "waterfront and the beaches south of the city.",
@@ -908,7 +914,7 @@ const SITE = {
       ],
       bestTime: "December to March is the driest and hottest stretch.",
       // TODO(owner): confirm how guests travel from the Maasai Mara to the
-      // coast — road transfer or a domestic flight — and say so here.
+      // coast, road transfer or a domestic flight, and say so here.
       gettingThere: "Transferred from the Maasai Mara to the coast as part of the package.",
       timeSpent: "Day 6, before Diani.",
       card: "images/destinations/mombasa.svg",
@@ -928,7 +934,7 @@ const SITE = {
       region: "Coast",
       featured: true,
       blurb: "White-sand beach south of Mombasa. The resting stop.",
-      metaTitle: "Diani Beach — the closing stop | YOLO Safaris",
+      metaTitle: "Diani Beach: the closing stop | YOLO Safaris",
       metaDescription:
         "The last stop on the YOLO Safaris route: Diani Beach, south of " +
         "Mombasa, where the trip slows down before the journey home.",

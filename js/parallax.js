@@ -1,5 +1,5 @@
 /* ==========================================================================
-   YOLO Safaris — parallax helper
+   YOLO Safaris parallax helper
    --------------------------------------------------------------------------
    Copy this markup for a new parallax banner (js/app.js builds the same two
    elements for the banners it renders):
