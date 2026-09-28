@@ -1,0 +1,1319 @@
+/* ==========================================================================
+   YOLO Safaris — stylesheet
+   --------------------------------------------------------------------------
+   Order matches the pages:
+
+     1  Tokens            8  Visits grid and cards
+     2  Base              9  Visit detail
+     3  Shared pieces    10  Contact and the booking form
+     4  Header           11  Footer
+     5  Hero and banners 12  Floating button and noscript
+     6  Home sections
+     7  About
+
+   Mobile first. Every media query is min-width.
+   ========================================================================== */
+
+/* ============================================================ 1. Tokens == */
+/* The only place colours, type, spacing and radii are set. */
+:root {
+  /* Brand palette, sampled from assets/logo.jpeg and assets/brochure.jpeg.
+     Gold is for accents and primary buttons only. */
+  --forest: #003d13;
+  --forest-deep: #00260c;
+  --green-mid: #0a5220;
+  --muted: #5c6b58;
+  --gold: #f8b808;
+  --gold-deep: #d99f00;
+  --bg: #ffffff;
+  --bg-warm: #faf8f4;
+  --rule: #e6e3dc;
+  --danger: #a3231b;
+
+  /* Type */
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+          Arial, "Noto Sans", sans-serif;
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-md: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-h2: clamp(1.55rem, 1.25rem + 1.4vw, 2.3rem);
+  --text-h1: clamp(1.5rem, 0.95rem + 2.5vw, 2.75rem);
+  --leading-tight: 1.15;
+  --leading-body: 1.65;
+  --measure: 65ch;
+
+  /* Space */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-section: clamp(3.5rem, 1.5rem + 5vw, 6rem);
+  --wrap: 1100px;
+  --gutter: 24px;
+
+  /* Shape */
+  --radius: 12px;
+  --shadow-card: 0 1px 2px rgba(0, 38, 12, 0.05), 0 8px 24px rgba(0, 38, 12, 0.06);
+  --transition: 160ms ease;
+
+  /* Parallax banners are a fixed height, never content height. The width term
+     sets the scale on tall screens; the height term stops a banner from eating
+     a short window (a phone in landscape, or a half-height browser). */
+  --parallax-height: clamp(175px, min(26vw + 110px, 46vh), 520px);
+}
+
+/* ============================================================== 2. Base == */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--forest);
+  font-family: var(--font);
+  font-size: var(--text-md);
+  line-height: var(--leading-body);
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--green-mid);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--forest);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: var(--leading-tight);
+  letter-spacing: -0.015em;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ==================================================== 3. Shared pieces == */
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--space-section);
+}
+
+.section--tint {
+  background: var(--bg-warm);
+}
+
+.section--tight {
+  padding-block: var(--space-6);
+}
+
+.section__head {
+  margin-bottom: var(--space-6);
+}
+
+.section__title {
+  font-size: var(--text-h2);
+  font-weight: 700;
+}
+
+.section__intro,
+.section__lead {
+  max-width: var(--measure);
+  margin-top: var(--space-4);
+  color: var(--muted);
+}
+
+.section__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--green-mid);
+}
+
+.eyebrow {
+  margin-bottom: var(--space-3);
+  color: var(--gold);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.prose {
+  max-width: var(--measure);
+}
+
+.prose p + p {
+  margin-top: var(--space-4);
+}
+
+.prose__lead {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--green-mid);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--transition), border-color var(--transition),
+              color var(--transition);
+}
+
+/* Phones: keep the two hero buttons on one line so the headline, the promise
+   and all five key facts still fit above the fold. */
+@media (max-width: 479px) {
+  .btn {
+    padding: 0.7rem 0.75rem;
+    font-size: var(--text-xs);
+  }
+}
+
+.btn--primary {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--forest-deep);
+}
+
+.btn--primary:hover {
+  background: var(--gold-deep);
+  border-color: var(--gold-deep);
+  color: var(--forest-deep);
+}
+
+.btn--outline {
+  background: transparent;
+  border-color: var(--green-mid);
+  color: var(--forest);
+}
+
+.btn--outline:hover {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: var(--bg);
+}
+
+/* Secondary button sitting on a photograph. */
+.btn--onImage {
+  border-color: rgba(255, 255, 255, 0.7);
+  color: var(--bg);
+}
+
+.btn--onImage:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--bg);
+  color: var(--bg);
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: 1fr;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-5);
+  border-radius: var(--radius);
+  background: var(--bg);
+  box-shadow: var(--shadow-card);
+}
+
+.card__body {
+  padding: var(--space-4) var(--space-4) 0;
+}
+
+.card__title {
+  font-size: var(--text-lg);
+}
+
+.card__line {
+  margin-top: var(--space-2);
+  color: var(--muted);
+}
+
+.panel {
+  padding: var(--space-5);
+  border-radius: var(--radius);
+  background: var(--bg);
+  box-shadow: var(--shadow-card);
+}
+
+.section--tint .panel {
+  background: var(--bg);
+}
+
+.panel__title {
+  font-size: var(--text-lg);
+}
+
+.panel__intro {
+  margin-top: var(--space-2);
+  color: var(--muted);
+}
+
+.panel__note {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.note {
+  max-width: var(--measure);
+  margin-top: var(--space-5);
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--gold);
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.note strong {
+  color: var(--forest);
+}
+
+.bullet-list li,
+.checklist li {
+  padding-block: var(--space-2);
+}
+
+.bullet-list li {
+  padding-left: var(--space-4);
+  position: relative;
+}
+
+.bullet-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.05em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.checklist {
+  margin-top: var(--space-4);
+}
+
+.checklist li {
+  display: flex;
+  gap: var(--space-3);
+  border-bottom: 1px solid var(--rule);
+}
+
+.checklist li:last-child {
+  border-bottom: 0;
+}
+
+.checklist li::before {
+  flex: none;
+  width: 1.2rem;
+  font-weight: 700;
+  color: var(--green-mid);
+  content: "✓";
+}
+
+.checklist--out li::before {
+  content: "×";
+  color: var(--muted);
+}
+
+.checklist--out li {
+  color: var(--muted);
+}
+
+.closing {
+  text-align: center;
+}
+
+.closing__title {
+  font-size: var(--text-h2);
+}
+
+.closing__line {
+  max-width: 46ch;
+  margin: var(--space-4) auto 0;
+  color: var(--muted);
+}
+
+.closing .actions {
+  justify-content: center;
+}
+
+.definitions dt {
+  margin-top: var(--space-4);
+  color: var(--muted);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.definitions dt:first-child {
+  margin-top: 0;
+}
+
+.definitions dd {
+  margin-top: var(--space-1);
+  font-size: var(--text-lg);
+}
+
+@media (min-width: 640px) {
+  .grid--two,
+  .grid--three,
+  .grid--four {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .grid--three {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid--four {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ============================================================ 4. Header == */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  padding-block: var(--space-3);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-right: auto;
+  color: var(--forest);
+  text-decoration: none;
+}
+
+.brand img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+}
+
+.brand__name {
+  font-size: var(--text-sm);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: none;
+  order: 3;
+  width: 100%;
+  padding-block: var(--space-2) var(--space-3);
+  border-top: 1px solid var(--rule);
+}
+
+.nav.is-open {
+  display: block;
+}
+
+.nav__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav__link {
+  display: block;
+  padding-block: var(--space-3);
+  border-bottom: 1px solid var(--rule);
+  color: var(--forest);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nav__list li:last-child .nav__link {
+  border-bottom: 0;
+}
+
+.nav__link:hover {
+  color: var(--green-mid);
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.header__actions .btn {
+  padding: 0.6rem 1rem;
+}
+
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 44px;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--bg);
+  cursor: pointer;
+}
+
+.menu-toggle__bar {
+  display: block;
+  height: 2px;
+  background: var(--forest);
+  transition: background-color var(--transition);
+}
+
+.menu-toggle:hover .menu-toggle__bar {
+  background: var(--green-mid);
+}
+
+/* Very narrow phones: the header must stay on one line, so the wordmark steps
+   aside and leaves the logo mark, the call to action and the menu. */
+@media (max-width: 359px) {
+  .brand__name {
+    display: none;
+  }
+
+  .header__actions .btn {
+    padding: 0.6rem 0.7rem;
+    font-size: var(--text-xs);
+  }
+
+  .brand img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .menu-toggle {
+    width: 40px;
+    height: 36px;
+  }
+}
+
+@media (min-width: 900px) {
+  .header {
+    flex-wrap: nowrap;
+    gap: var(--space-6);
+    padding-block: var(--space-4);
+  }
+
+  .brand img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .brand__name {
+    font-size: var(--text-md);
+  }
+
+  .nav {
+    display: block;
+    order: 0;
+    width: auto;
+    padding-block: 0;
+    border-top: 0;
+  }
+
+  .nav__list {
+    flex-direction: row;
+    gap: var(--space-5);
+  }
+
+  .nav__link {
+    padding-block: var(--space-2);
+    border-bottom: 0;
+  }
+
+  .nav__link.is-current {
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-decoration-thickness: 2px;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+}
+
+/* =================================================== 5. Hero & banners == */
+/* One overlay gradient for the whole site, used only to keep text on a
+   photograph legible. */
+.banner {
+  position: relative;
+  display: grid;
+  align-content: center;
+  /* min-height, not height: a banner keeps the fixed parallax height it was
+     designed for, but never clips its own text on a very narrow screen. */
+  min-height: var(--parallax-height);
+  overflow: hidden;
+  background: var(--forest-deep);
+}
+
+.banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 38, 12, 0.55), rgba(0, 38, 12, 0.82));
+}
+
+.parallax-layer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -7.5%;
+  height: 115%;
+  will-change: transform;
+}
+
+.parallax-layer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner__content {
+  position: relative;
+  z-index: 1;
+  color: var(--bg);
+}
+
+.banner__title {
+  max-width: 22ch;
+  font-size: var(--text-h1);
+  font-weight: 800;
+  color: var(--bg);
+}
+
+.banner--hero .banner__title {
+  max-width: 26ch;
+}
+
+/* The hero body: brand line, calls to action and the five key facts. */
+.hero__body {
+  padding-block: var(--space-4) var(--space-6);
+}
+
+.hero__tagline {
+  max-width: 46ch;
+  margin-bottom: var(--space-2);
+  color: var(--green-mid);
+  font-size: var(--text-sm);
+  font-style: italic;
+}
+
+.hero__body .actions {
+  margin-top: var(--space-4);
+}
+
+.hero__body .facts {
+  margin-top: var(--space-5);
+}
+
+/* Phones: every pixel of the first screen counts, because the five key facts
+   have to sit above the fold. */
+@media (max-width: 479px) {
+  .hero__body {
+    padding-block: var(--space-3) var(--space-4);
+  }
+
+  .hero__tagline {
+    margin-bottom: var(--space-1);
+    font-size: var(--text-xs);
+  }
+
+  .hero__body .actions {
+    margin-top: var(--space-3);
+  }
+
+  .hero__body .facts {
+    margin-top: var(--space-4);
+  }
+}
+
+/* The very narrowest phones still on sale (a folded Galaxy Fold is 280px, an
+   iPhone SE 1 is 320px): buy back the last few pixels above the fold. */
+@media (max-width: 359px) {
+  .hero__body .facts {
+    margin-top: var(--space-3);
+  }
+}
+
+.facts {
+  display: grid;
+  gap: var(--space-2) var(--space-4);
+  grid-template-columns: 1fr;
+}
+
+.facts li {
+  display: flex;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.facts li::before {
+  content: "";
+  flex: none;
+  width: 7px;
+  height: 7px;
+  margin-top: 0.55em;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+@media (min-width: 300px) {
+  .facts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .facts li:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .facts {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .facts li:last-child {
+    grid-column: auto;
+  }
+}
+
+/* ====================================================== 6. Home blocks == */
+.itinerary {
+  max-width: var(--wrap);
+}
+
+.itinerary__item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--rule);
+}
+
+.itinerary__item:first-child {
+  border-top: 1px solid var(--rule);
+}
+
+.itinerary__day {
+  flex: none;
+  min-width: 5rem;
+  color: var(--green-mid);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.itinerary__line {
+  flex: 1 1 20rem;
+  max-width: var(--measure);
+}
+
+.steps {
+  counter-reset: step;
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: 1fr;
+  margin-bottom: var(--space-6);
+}
+
+.step {
+  padding: var(--space-5);
+  border-radius: var(--radius);
+  background: var(--bg);
+  box-shadow: var(--shadow-card);
+}
+
+.step::before {
+  counter-increment: step;
+  content: counter(step);
+  display: block;
+  margin-bottom: var(--space-3);
+  color: var(--gold);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.step__title {
+  font-size: var(--text-lg);
+}
+
+.step__line {
+  margin-top: var(--space-2);
+  color: var(--muted);
+}
+
+.impact__closing {
+  max-width: 40ch;
+  margin-top: var(--space-6);
+  color: var(--green-mid);
+  font-size: var(--text-lg);
+  font-weight: 700;
+}
+
+.faq {
+  max-width: 52rem;
+}
+
+.faq details {
+  border-bottom: 1px solid var(--rule);
+}
+
+.faq details:first-child {
+  border-top: 1px solid var(--rule);
+}
+
+.faq__question {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq__question::-webkit-details-marker {
+  display: none;
+}
+
+.faq__question::after {
+  content: "+";
+  flex: none;
+  color: var(--gold);
+  font-size: var(--text-xl);
+  line-height: 1;
+}
+
+.faq details[open] .faq__question::after {
+  content: "–";
+}
+
+.faq__answer {
+  max-width: var(--measure);
+  padding-bottom: var(--space-5);
+  color: var(--muted);
+}
+
+@media (min-width: 768px) {
+  .steps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================================= 7. About == */
+.card--person img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+/* ================================================= 8. Visits & cards ===== */
+.region + .region {
+  margin-top: var(--space-7);
+}
+
+.region__title {
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: var(--space-5);
+  font-size: var(--text-xl);
+}
+
+.visit-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--bg);
+  box-shadow: var(--shadow-card);
+}
+
+.visit-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.visit-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--space-5);
+}
+
+.visit-card__name {
+  font-size: var(--text-lg);
+}
+
+.visit-card__blurb {
+  margin-top: var(--space-2);
+  color: var(--muted);
+}
+
+.visit-card__link {
+  margin-top: var(--space-4);
+  color: var(--green-mid);
+  font-weight: 700;
+  text-decoration-color: var(--gold);
+  text-decoration-thickness: 2px;
+}
+
+/* ====================================================== 9. Visit detail == */
+.banner--visit {
+  height: var(--parallax-height);
+}
+
+.gallery__item {
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.gallery__item img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.prevnext {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.prevnext__link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  text-decoration: none;
+}
+
+.prevnext__label {
+  color: var(--muted);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.prevnext__name {
+  font-size: var(--text-lg);
+  font-weight: 700;
+}
+
+.prevnext__all {
+  color: var(--green-mid);
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .prevnext {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+  }
+
+  .prevnext__link:last-child {
+    text-align: right;
+  }
+}
+
+/* ======================================================= 10. Contact ===== */
+.contact {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.form {
+  margin-top: var(--space-5);
+}
+
+.form__fields {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.field__label {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--forest);
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--forest);
+  font: inherit;
+  font-size: var(--text-md);
+}
+
+.field textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--green-mid);
+}
+
+.field--wide {
+  grid-column: 1 / -1;
+}
+
+.field__error {
+  color: var(--danger);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.field--invalid input,
+.field--invalid select,
+.field--invalid textarea {
+  border-color: var(--danger);
+}
+
+/* Spam honeypot: hidden, and out of the tab order. */
+.field--gotcha {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form .btn {
+  margin-top: var(--space-5);
+}
+
+.form__status {
+  margin-top: var(--space-4);
+  padding: var(--space-4);
+  border-left: 2px solid var(--green-mid);
+  background: var(--bg-warm);
+  font-size: var(--text-sm);
+}
+
+.form__status--error {
+  border-left-color: var(--danger);
+}
+
+.form__status--info {
+  border-left-color: var(--gold);
+}
+
+.form__fallback {
+  margin-top: var(--space-4);
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.form__fallback a {
+  font-weight: 700;
+}
+
+.contact__direct .btn {
+  margin-top: var(--space-5);
+}
+
+@media (min-width: 560px) {
+  .form__fields {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 960px) {
+  .contact {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: var(--space-7);
+  }
+}
+
+/* ========================================================== 11. Footer == */
+.site-footer {
+  padding-block: var(--space-7) var(--space-5);
+  background: var(--forest-deep);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: var(--text-sm);
+}
+
+.footer__inner {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.footer__brand img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg);
+}
+
+.footer__brand p {
+  max-width: 30ch;
+  margin-top: var(--space-4);
+}
+
+.footer__title {
+  margin-bottom: var(--space-3);
+  color: var(--gold);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.footer__list {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.footer__list a {
+  color: var(--bg);
+  text-decoration: none;
+}
+
+.footer__list a:hover {
+  color: var(--gold);
+  text-decoration: underline;
+}
+
+.footer__small {
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: var(--text-xs);
+}
+
+.footer__small p + p {
+  margin-top: var(--space-2);
+}
+
+@media (min-width: 640px) {
+  .footer__inner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .footer__inner {
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  }
+}
+
+/* ========================================= 12. Floating button, noscript = */
+.whatsapp-float {
+  position: fixed;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  z-index: 40;
+  padding: 0.75rem 1.15rem;
+  border-radius: var(--radius);
+  background: var(--green-mid);
+  color: var(--bg);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: var(--shadow-card);
+  /* js/app.js reveals it once the banner has been scrolled past, so it never
+     covers the hero or the five key facts. */
+  transform: translateY(calc(100% + var(--space-4)));
+  transition: transform var(--transition);
+}
+
+.whatsapp-float.is-visible {
+  transform: none;
+}
+
+.whatsapp-float:hover {
+  background: var(--forest);
+  color: var(--bg);
+}
+
+@media (min-width: 768px) {
+  .whatsapp-float {
+    display: none;
+  }
+}
+
+.noscript {
+  padding: var(--space-5) var(--gutter);
+  border-top: 2px solid var(--gold);
+  background: var(--bg-warm);
+  color: var(--forest);
+  font-size: var(--text-sm);
+}
+
+.noscript p {
+  max-width: var(--wrap);
+  margin-inline: auto;
+}
+
+.noscript p + p {
+  margin-top: var(--space-2);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: var(--space-3) var(--space-4);
+  background: var(--forest);
+  color: var(--bg);
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+.page-head__title {
+  font-size: var(--text-h1);
+  font-weight: 800;
+}
+
+.page-head__intro {
+  max-width: var(--measure);
+  margin-top: var(--space-4);
+  color: var(--muted);
+  font-size: var(--text-lg);
+}
+
+/* ==================================================== Motion preference == */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+
+  .parallax-layer {
+    top: 0;
+    height: 100%;
+  }
+}
