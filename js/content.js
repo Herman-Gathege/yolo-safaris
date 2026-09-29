@@ -37,7 +37,7 @@
      6. Guide names, roles and real photographs, see SITE.about.team.
      7. Coast Circuit: SGR train or a flight from Nairobi to Mombasa, see
         SITE.destinations (mombasa.gettingThere).
-     8. Western Circuit: the Day 5 drive from Thomson's Falls to the Mara is
+     8. Western Circuit: the Day 5 drive from Thomsons Falls to the Mara is
         long. Confirm the overnight stop, see SITE.routes (western).
      9. Real photography. Any path ending in .svg is a placeholder waiting
         for a photo.
@@ -187,7 +187,7 @@ const SITE = {
         "maasai-village",
         "maasai-mara",
       ],
-      // TODO(owner): Day 5 is a long drive from Thomson's Falls to the Mara.
+      // TODO(owner): Day 5 is a long drive from Thomsons Falls to the Mara.
       // Confirm where guests sleep on night 4 (Nyahururu or Nakuru).
       days: [
         {
@@ -204,7 +204,7 @@ const SITE = {
         },
         {
           day: "Day 4",
-          line: "Morning game drive in Lake Nakuru National Park, then north to Thomson’s Falls.",
+          line: "Morning game drive in Lake Nakuru National Park, then north to Thomsons Falls.",
         },
         {
           day: "Day 5",
@@ -1017,7 +1017,7 @@ const SITE = {
         "Take a morning game drive through the park.",
         "Look for rhino, Rothschild’s giraffe, buffalo and lion.",
         "Stop at Baboon Cliff for the view.",
-        "Drive north to Thomson’s Falls in the afternoon.",
+        "Drive north to Thomsons Falls in the afternoon.",
       ],
       bestTime: "Year-round. Mornings are best for wildlife.",
       gettingThere: "Short road transfer from Lake Elementaita, included in the package.",
@@ -1035,15 +1035,15 @@ const SITE = {
 
     {
       slug: "thomsons-falls",
-      name: "Thomson’s Falls",
+      name: "Thomsons Falls",
       region: "Western Circuit",
       blurb: "A 74-metre waterfall on the edge of Nyahururu town.",
-      metaTitle: "Thomson’s Falls, Nyahururu | YOLO Safaris",
+      metaTitle: "Thomsons Falls, Nyahururu | YOLO Safaris",
       metaDescription:
-        "Day 4 of the Western Circuit: an afternoon at Thomson’s Falls, the " +
+        "Day 4 of the Western Circuit: an afternoon at Thomsons Falls, the " +
         "74-metre waterfall at Nyahururu.",
       intro:
-        "Thomson’s Falls drops 74 metres off the edge of the plateau at " +
+        "Thomsons Falls drops 74 metres off the edge of the plateau at " +
         "Nyahururu. Paths lead to viewpoints at the top and down towards the foot.",
       whyGo: [
         "One of Kenya’s best-known waterfalls.",
@@ -1061,12 +1061,12 @@ const SITE = {
       timeSpent: "Western Circuit, Day 4 afternoon.",
       card: "images/destinations/thomsons-falls.jpg",
       banner: "images/destinations/thomsons-falls.jpg",
-      cardAlt: "Thomson’s Falls at Nyahururu",
-      bannerAlt: "Thomson’s Falls at Nyahururu",
+      cardAlt: "Thomsons Falls at Nyahururu",
+      bannerAlt: "Thomsons Falls at Nyahururu",
       gallery: [
-        { src: "images/destinations/thomsons-falls-1.jpg", alt: "Thomson’s Falls, photo 1" },
-        { src: "images/destinations/thomsons-falls-2.jpg", alt: "Thomson’s Falls, photo 2" },
-        { src: "images/destinations/thomsons-falls-3.jpg", alt: "Thomson’s Falls, photo 3" },
+        { src: "images/destinations/thomsons-falls-1.jpg", alt: "Thomsons Falls, photo 1" },
+        { src: "images/destinations/thomsons-falls-2.jpg", alt: "Thomsons Falls, photo 2" },
+        { src: "images/destinations/thomsons-falls-3.jpg", alt: "Thomsons Falls, photo 3" },
       ],
     },
 
