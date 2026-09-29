@@ -122,7 +122,7 @@ const SITE = {
     whatsappLabel: "WhatsApp",
     email: "yolosafaris@gmail.com",
     emailHref: "mailto:yolosafaris@gmail.com",
-    base: "Nairobi, Kenya",
+    base: "Nakuru, Kenya",
     replyTime: "We reply within 24 hours.",
   },
 
