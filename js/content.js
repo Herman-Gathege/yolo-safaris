@@ -68,7 +68,7 @@ const SITE = {
       title: "YOLO Safaris | {duration} in Kenya from {price}",
       description:
         "Two guided {durationLong} routes from Nairobi: west through the " +
-        "Rift Valley to the Maasai Mara, or east to Mombasa and Diani. From " +
+        "Rift Valley to the Maasai Mara, or East to Mombasa and Diani. From " +
         "{price} per guest, with accommodation, park fees and meals included.",
     },
     about: {
@@ -227,7 +227,7 @@ const SITE = {
       from: "Nairobi",
       to: "Mombasa and Diani",
       line:
-        "The train to the coast, then Mombasa’s history, wildlife parks and " +
+        "The train to the Coast, then Mombasa’s history, wildlife parks and " +
         "a water park, ending on Diani Beach.",
       image: "images/destinations/mombasa.jpg",
       imageAlt: "Beach umbrellas and swimmers on a tropical shore",
@@ -278,8 +278,8 @@ const SITE = {
     hero: {
       eyebrow: "More than a holiday, a journey with purpose.",
       headline:
-        "Six days in Kenya, two ways: west to the Maasai Mara, or east to " +
-        "the coast.",
+        "Six days in Kenya, two ways: west to the Maasai Mara, or East to " +
+        "the Coast.",
       tagline: "Where the Love for Nature and Adventure meets God’s creatives…",
       image: "images/home-hero.jpeg",
       imageAlt: "Wildebeest crossing the plains at sunset beside a safari vehicle",
