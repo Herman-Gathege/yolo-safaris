@@ -1212,7 +1212,7 @@ button {
 /* The brand mark under a section heading. The width and height are fixed, so
    the image cannot shift the layout while it loads. */
 .section__mark {
-  margin-top: var(--space-5);
+  margin-bottom: var(--space-4);
 }
 
 .section__mark img {

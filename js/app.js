@@ -311,12 +311,12 @@
 
   function buildPoints(host, data) {
     var box = wrap();
-    box.appendChild(head(data));
     if (data.showMark) {
       var mark = make("p", "section__mark");
       mark.appendChild(image(SITE.brand.logo, SITE.brand.logoAlt, 1254, 1254, true));
       box.appendChild(mark);
     }
+    box.appendChild(head(data));
     var grid = make("div", "grid grid--three");
     (data.items || []).forEach(function (item) {
       var card = make("article", "card");
