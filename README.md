@@ -237,8 +237,9 @@ Search `js/content.js` for `TODO(owner)`.
    the real amounts and due date are set.
 4. **Cancellation and refund wording.** `SITE.home.booking.note`.
 5. **Formspree form ID.** `SITE.form.endpoint`. See section 4 above.
-6. **Guides.** `SITE.about.team` has placeholder portraits and no names.
-   Supply real names, roles and photographs.
+6. **Guides.** The guides section was removed from the about page on request.
+   Add `SITE.about.team` back and restore the `data-render="team"` line in
+   `about.html` if it should return, then supply real names and photographs.
 7. **The Maasai Mara to the coast leg.** Confirm whether guests travel by road
    or by a domestic flight, then say so in the Mombasa entry of `SITE.destinations`.
 8. **Payment methods.** `SITE.home.faq.items` says details are sent on

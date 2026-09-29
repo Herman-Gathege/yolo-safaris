@@ -53,7 +53,7 @@
   --space-5: 1.5rem;
   --space-6: 2rem;
   --space-7: 3rem;
-  --space-section: clamp(3.5rem, 1.5rem + 5vw, 6rem);
+  --space-section: clamp(2.75rem, 1.25rem + 4vw, 5rem);
   /* Content width. Wide enough to fill a desktop screen, while --measure
      above keeps paragraphs at a readable line length. */
   --wrap: 1440px;
@@ -162,11 +162,11 @@ button {
 }
 
 .section--tight {
-  padding-block: var(--space-6);
+  padding-block: var(--space-5);
 }
 
 .section__head {
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-5);
 }
 
 .section__title {
@@ -963,32 +963,38 @@ button {
 }
 
 .route-card__stops-title {
-  margin-top: var(--space-5);
+  margin-top: var(--space-4);
   font-size: var(--text-sm);
   font-weight: 700;
 }
 
-/* The stops, in travel order, each marked with a small gold dot. */
+/* The stops, in travel order, each marked with a small gold dot. The list is a
+   grid, so the stops line up in tidy columns on a wide screen and stack into a
+   single column on a phone, with the dots always aligned to the first line. */
 .route-card__stops {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2) var(--space-5);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: var(--space-2) var(--space-4);
   margin-top: var(--space-3);
+  padding: 0;
+  list-style: none;
 }
 
 .route-card__stops li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  min-width: 0;
   font-size: var(--text-sm);
 }
 
 .route-card__stops a {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-2);
   color: var(--forest);
   font-weight: 600;
   text-decoration: none;
+  overflow-wrap: anywhere;
 }
 
 .route-card__stops a::before {
@@ -996,6 +1002,7 @@ button {
   flex: none;
   width: 7px;
   height: 7px;
+  margin-top: 0.45em;
   border-radius: 50%;
   background: var(--gold);
 }
@@ -1209,8 +1216,15 @@ button {
 }
 
 .section__mark img {
-  width: 88px;
-  height: 88px;
+  width: 176px;
+  height: 176px;
+}
+
+@media (max-width: 479px) {
+  .section__mark img {
+    width: 140px;
+    height: 140px;
+  }
 }
 
 .gallery__item img {

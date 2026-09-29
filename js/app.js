@@ -314,7 +314,7 @@
     box.appendChild(head(data));
     if (data.showMark) {
       var mark = make("p", "section__mark");
-      mark.appendChild(image(SITE.brand.mark, SITE.brand.markAlt, 256, 256, true));
+      mark.appendChild(image(SITE.brand.logo, SITE.brand.logoAlt, 1254, 1254, true));
       box.appendChild(mark);
     }
     var grid = make("div", "grid grid--three");

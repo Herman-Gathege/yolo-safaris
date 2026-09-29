@@ -34,7 +34,9 @@
      3. Deposit and balance terms, see SITE.contactPage.payment.
      4. Cancellation and refund wording, see SITE.home.booking.note.
      5. Formspree form ID, see SITE.form.endpoint (README has the steps).
-     6. Guide names, roles and real photographs, see SITE.about.team.
+     6. The guides section was removed from the about page on request. Add
+        SITE.about.team back and restore the data-render="team" line in
+        about.html if it should return.
      7. Coast Circuit: SGR train or a flight from Nairobi to Mombasa, see
         SITE.destinations (mombasa.gettingThere).
      8. Western Circuit: the Day 5 drive from Thomsons Falls to the Mara is
@@ -605,34 +607,6 @@ const SITE = {
         {
           title: "A trip that gives back",
           line: "Part of every booking funds school fees and family support.",
-        },
-      ],
-    },
-
-    team: {
-      title: "Your guides",
-      intro: "The people who plan and run the routes.",
-      // TODO(owner): add real names, roles and photographs. The portraits below
-      // are generated placeholders and the cards deliberately carry no names
-      // until you supply them.
-      people: [
-        {
-          role: "Driver-guides",
-          line: "They know the routes, the parks and the wildlife.",
-          image: "images/team/guide-1.svg",
-          alt: "Placeholder portrait for a YOLO Safaris driver-guide",
-        },
-        {
-          role: "Trip planners",
-          line: "One person answers your enquiry and plans your dates.",
-          image: "images/team/guide-2.svg",
-          alt: "Placeholder portrait for a YOLO Safaris trip planner",
-        },
-        {
-          role: "Community partners",
-          line: "They deliver the charity work where it is needed.",
-          image: "images/destinations/charity.jpeg",
-          alt: "YOLO Safaris community charity work",
         },
       ],
     },
