@@ -278,7 +278,7 @@ const SITE = {
     hero: {
       eyebrow: "More than a holiday, a journey with purpose.",
       headline:
-        "Six days in Kenya, two ways: west to the Maasai Mara, or East to " +
+        "Six days in Kenya, two ways: West to the Maasai Mara, or East to " +
         "the Coast.",
       tagline: "Where the Love for Nature and Adventure meets God’s creatives…",
       image: "images/home-hero.jpeg",
