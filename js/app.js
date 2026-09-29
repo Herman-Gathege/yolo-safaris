@@ -108,10 +108,26 @@
   }
 
   /* A <figure> holding one image, for the photo sections. */
-  function figure(className, src, alt, width, height) {
+  /* A photo that opens in the overlay. The badge sits on the photograph and
+     clears out of the way on hover; on touch screens it stays put, because
+     there is no hover to bring it back. */
+  function zoomable(src, alt, picture) {
+    var button = make("button", "gallery__button");
+    button.type = "button";
+    button.setAttribute("aria-label", text("ui.viewPhoto") + ": " + tokens(alt));
+    button.appendChild(picture);
+    button.appendChild(make("span", "gallery__badge", text("ui.viewPhoto")));
+    button.addEventListener("click", function () {
+      openOverlay(src, alt);
+    });
+    return button;
+  }
+
+  function figure(className, src, alt, width, height, zoom) {
     var node = document.createElement("figure");
     node.className = className;
-    node.appendChild(image(src, alt, width, height, true));
+    var picture = image(src, alt, width, height, true);
+    node.appendChild(zoom ? zoomable(src, alt, picture) : picture);
     return node;
   }
 
@@ -237,12 +253,13 @@
   /* ========================================================== Hero ====== */
 
   /* A fixed-height parallax banner with a single legibility overlay. */
-  function banner(src, alt, eyebrow, title, speed, variant) {
+  function banner(src, alt, eyebrow, title, speed, variant, zoom) {
     var section = make("section", "banner" + (variant ? " " + variant : ""));
     section.setAttribute("data-parallax", speed);
 
     var layer = make("div", "parallax-layer");
-    layer.appendChild(image(src, alt, 1600, 900, true));
+    var picture = image(src, alt, 1600, 900, true);
+    layer.appendChild(zoom ? zoomable(src, alt, picture) : picture);
     section.appendChild(layer);
 
     var content = make("div", "wrap banner__content");
@@ -295,6 +312,11 @@
   function buildPoints(host, data) {
     var box = wrap();
     box.appendChild(head(data));
+    if (data.showMark) {
+      var mark = make("p", "section__mark");
+      mark.appendChild(image(SITE.brand.mark, SITE.brand.markAlt, 256, 256, true));
+      box.appendChild(mark);
+    }
     var grid = make("div", "grid grid--three");
     (data.items || []).forEach(function (item) {
       var card = make("article", "card");
@@ -656,7 +678,7 @@
     var next = SITE.destinations[(destinationIndex + 1) % count];
 
     host.appendChild(banner(destination.banner, destination.bannerAlt, destination.region, destination.name,
-      HERO_SPEED, "banner--destination"));
+      HERO_SPEED, "banner--destination", true));
 
     var introSection = make("section", "section section--tight");
     buildProse(introSection, { body: [destination.intro] });
@@ -683,16 +705,20 @@
     factsSection.appendChild(facts);
     host.appendChild(factsSection);
 
-    var gallerySection = make("section", "section section--tint");
-    var galleryBox = wrap();
-    galleryBox.appendChild(make("h2", "section__title", page.galleryTitle));
-    var gallery = make("div", "grid grid--three");
-    destination.gallery.forEach(function (shot) {
-      gallery.appendChild(figure("gallery__item", shot.src, shot.alt, 1200, 800));
-    });
-    galleryBox.appendChild(gallery);
-    gallerySection.appendChild(galleryBox);
-    host.appendChild(gallerySection);
+    /* A stop with no second photograph yet shows no photo strip, rather than
+       the same picture repeated down the page. */
+    if (destination.gallery.length) {
+      var gallerySection = make("section", "section section--tint");
+      var galleryBox = wrap();
+      galleryBox.appendChild(make("h2", "section__title", page.galleryTitle));
+      var gallery = make("div", "grid grid--three");
+      destination.gallery.forEach(function (shot) {
+        gallery.appendChild(figure("gallery__item", shot.src, shot.alt, 1200, 800, true));
+      });
+      galleryBox.appendChild(gallery);
+      gallerySection.appendChild(galleryBox);
+      host.appendChild(gallerySection);
+    }
 
     var navSection = make("section", "section section--tight");
     var navBox = wrap();
@@ -1144,6 +1170,67 @@
           button.textContent = SITE.form.submit;
         });
     });
+  }
+
+  /* ======================================================== Overlay ===== */
+
+  /* Gallery photos open in a plain overlay over the page. The overlay is
+     built on the first click, so a visitor who never opens one pays nothing
+     for it. Escape, the close button and a click on the backdrop all close
+     it, and focus returns to the photo that was opened. */
+  var lightbox = null;
+  var lightboxImage = null;
+  var lastFocus = null;
+
+  function buildLightbox() {
+    var box = make("div", "lightbox");
+    box.id = "lightbox";
+    box.setAttribute("role", "dialog");
+    box.setAttribute("aria-modal", "true");
+    box.setAttribute("aria-label", text("ui.photoOverlay"));
+    box.hidden = true;
+
+    var close = make("button", "lightbox__close", text("ui.photoClose"));
+    close.type = "button";
+
+    lightboxImage = document.createElement("img");
+    lightboxImage.className = "lightbox__image";
+    lightboxImage.alt = "";
+
+    box.appendChild(lightboxImage);
+    box.appendChild(close);
+
+    box.addEventListener("click", function (event) {
+      if (event.target === box || event.target === close) closeOverlay();
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && !box.hidden) closeOverlay();
+    });
+
+    document.body.appendChild(box);
+    return box;
+  }
+
+  function openOverlay(src, alt) {
+    if (!lightbox) lightbox = buildLightbox();
+    lastFocus = document.activeElement;
+    lightboxImage.src = asset(tokens(src));
+    lightboxImage.alt = tokens(alt);
+    lightbox.hidden = false;
+    document.body.classList.add("is-overlay");
+    var close = lightbox.querySelector(".lightbox__close");
+    if (close) close.focus();
+  }
+
+  function closeOverlay() {
+    if (!lightbox) return;
+    lightbox.hidden = true;
+    lightboxImage.removeAttribute("src");
+    lightboxImage.alt = "";
+    document.body.classList.remove("is-overlay");
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+    lastFocus = null;
   }
 
   /* ============================================================ Go ====== */
