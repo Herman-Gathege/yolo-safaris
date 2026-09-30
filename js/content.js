@@ -33,17 +33,16 @@
      2. Charity wording. Confirm "a portion of every booking" is approved.
      3. Deposit and balance terms, see SITE.contactPage.payment.
      4. Cancellation and refund wording, see SITE.home.booking.note.
-     5. Formspree form ID, see SITE.form.endpoint (README has the steps).
-     6. The guides section was removed from the about page on request. Add
+     5. The guides section was removed from the about page on request. Add
         SITE.about.team back and restore the data-render="team" line in
         about.html if it should return.
-     7. Coast Circuit: SGR train or a flight from Nairobi to Mombasa, see
+     6. Coast Circuit: SGR train or a flight from Nairobi to Mombasa, see
         SITE.destinations (mombasa.gettingThere).
-     8. Western Circuit: the Day 5 drive from Thomsons Falls to the Mara is
+     7. Western Circuit: the Day 5 drive from Thomsons Falls to the Mara is
         long. Confirm the overnight stop, see SITE.routes (western).
-     9. Real photography. Any path ending in .svg is a placeholder waiting
+     8. Real photography. Any path ending in .svg is a placeholder waiting
         for a photo.
-    10. Site URL. SITE.meta.url holds the canonical origin. If it ever moves,
+     9. Site URL. SITE.meta.url holds the canonical origin. If it ever moves,
         update it here plus robots.txt, sitemap.xml and the static page heads.
    ========================================================================== */
 
@@ -118,6 +117,8 @@ const SITE = {
     // figure, then update `duration`, `durationLong` and `durationAdjective`.
   },
 
+  /* The business is based in Nakuru. Keep `base` in step with the
+     addressLocality in the structured data in every page head. */
   contact: {
     phoneDisplay: "+254 727 720 566",
     phoneHref: "tel:+254727720566",
@@ -739,9 +740,10 @@ const SITE = {
     title: "Booking enquiry",
     intro: "Eight fields. We reply by email or WhatsApp.",
 
-    /* Create a form at formspree.io, connect it to yolosafaris@gmail.com,
-       then paste the form ID here in place of REPLACE_WITH_FORM_ID. */
-    endpoint: "https://formspree.io/f/REPLACE_WITH_FORM_ID",
+    /* Formspree form connected to yolosafaris@gmail.com. Submissions are
+       emailed there. Manage the form, spam settings and allowed domains at
+       formspree.io. */
+    endpoint: "https://formspree.io/f/xjykzaal",
     subject: "New YOLO Safaris booking enquiry",
 
     fields: {
@@ -814,6 +816,7 @@ const SITE = {
     sending: "Sending…",
     success: "Thank you. We’ll reply within 24 hours.",
     errorGeneral: "We could not send your enquiry. Please email or WhatsApp us instead.",
+    /* Only shown if `endpoint` above is ever emptied or reset. */
     placeholderNotice:
       "The booking form is not connected yet. Please email or WhatsApp us " +
       "instead and we will reply within 24 hours.",
