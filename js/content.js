@@ -160,7 +160,7 @@ const SITE = {
     contactTitle: "Contact",
     credit: {
       line: "Site by",
-      label: "Web Bloom Tech Kenya",
+      label: "Webloom Tech Kenya",
       href: "https://webloomtechkenya.com/",
     },
     smallPrint:
