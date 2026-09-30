@@ -1566,6 +1566,18 @@ body.is-overlay {
   margin-top: var(--space-2);
 }
 
+/* The build credit wears the brand gold, like the other footer accents. */
+.footer__credit-link {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.footer__credit-link:hover,
+.footer__credit-link:focus-visible {
+  color: var(--gold);
+  text-decoration: underline;
+}
+
 @media (min-width: 640px) {
   .footer__inner {
     grid-template-columns: repeat(2, 1fr);

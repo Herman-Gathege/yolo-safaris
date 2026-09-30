@@ -250,7 +250,7 @@
     small.appendChild(para(null, SITE.footer.notIncludedLine));
     var credit = para(null, SITE.footer.credit.line);
     credit.appendChild(document.createTextNode(" "));
-    credit.appendChild(make("a", null, SITE.footer.credit.label, SITE.footer.credit.href));
+    credit.appendChild(make("a", "footer__credit-link", SITE.footer.credit.label, SITE.footer.credit.href));
     small.appendChild(credit);
     host.appendChild(small);
   }
