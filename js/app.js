@@ -56,6 +56,7 @@
         per: SITE.package.per,
         duration: SITE.package.duration,
         durationLong: SITE.package.durationLong,
+        durationAdjective: SITE.package.durationAdjective,
         destinationCount: SITE.destinations.length,
         phone: SITE.contact.phoneDisplay,
         email: SITE.contact.email,
@@ -247,6 +248,10 @@
     var small = make("div", "wrap footer__small");
     small.appendChild(para(null, SITE.footer.smallPrint));
     small.appendChild(para(null, SITE.footer.notIncludedLine));
+    var credit = para(null, SITE.footer.credit.line);
+    credit.appendChild(document.createTextNode(" "));
+    credit.appendChild(make("a", null, SITE.footer.credit.label, SITE.footer.credit.href));
+    small.appendChild(credit);
     host.appendChild(small);
   }
 

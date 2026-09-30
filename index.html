@@ -6,9 +6,10 @@
 
   <!-- Structure only. Every heading, price and line of copy on this page comes
        from the SITE object in js/content.js, rendered by js/app.js. -->
-  <title>YOLO Safaris</title>
-  <meta name="description" content="">
-  <link rel="canonical" href="">
+  <title>YOLO Safaris | 6 Days / 5 Nights in Kenya from USD 3,200</title>
+  <meta name="description" content="Two guided 6-day, 5-night routes from Nairobi: the Rift Valley and the Maasai Mara, or Mombasa and Diani. From USD 3,200 per guest.">
+  <link rel="canonical" href="https://yolo-safaris.onrender.com/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#003d13">
 
   <!-- Icons generated from assets/logo.jpeg. See the README. -->
@@ -17,19 +18,163 @@
   <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
-  <!-- Link previews, filled from SITE.meta and SITE.pages.home. -->
+  <!-- Open Graph and Twitter/X cards. js/app.js refreshes these from
+       SITE.pages and SITE.destinations when the page runs. -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="YOLO Safaris">
-  <meta property="og:title" content="">
-  <meta property="og:description" content="">
-  <meta property="og:image" content="">
+  <meta property="og:title" content="YOLO Safaris | 6 Days / 5 Nights in Kenya from USD 3,200">
+  <meta property="og:description" content="Two guided 6-day, 5-night routes from Nairobi: the Rift Valley and the Maasai Mara, or Mombasa and Diani. From USD 3,200 per guest.">
+  <meta property="og:url" content="https://yolo-safaris.onrender.com/">
+  <meta property="og:image" content="https://yolo-safaris.onrender.com/assets/social-share.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:url" content="">
+  <meta property="og:image:alt" content="YOLO Safaris logo beside elephants, giraffes and acacia trees on the Kenyan savanna">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="">
-  <meta name="twitter:description" content="">
-  <meta name="twitter:image" content="">
+  <meta name="twitter:title" content="YOLO Safaris | 6 Days / 5 Nights in Kenya from USD 3,200">
+  <meta name="twitter:description" content="Two guided 6-day, 5-night routes from Nairobi: the Rift Valley and the Maasai Mara, or Mombasa and Diani. From USD 3,200 per guest.">
+  <meta name="twitter:image" content="https://yolo-safaris.onrender.com/assets/social-share.jpg">
+  <meta name="twitter:image:alt" content="YOLO Safaris logo beside elephants, giraffes and acacia trees on the Kenyan savanna">
+
+  <!-- Structured data: the business, this page and where it sits in the site. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TravelAgency",
+        "@id": "https://yolo-safaris.onrender.com/#organization",
+        "name": "YOLO Safaris",
+        "url": "https://yolo-safaris.onrender.com/",
+        "logo": "https://yolo-safaris.onrender.com/assets/logo.jpeg",
+        "image": "https://yolo-safaris.onrender.com/assets/social-share.jpg",
+        "description": "A Kenya-based tour operator running guided safari routes from Nairobi through the Rift Valley to the Maasai Mara, and to Mombasa and Diani.",
+        "email": "yolosafaris@gmail.com",
+        "telephone": "+254 727 720 566",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Nakuru",
+          "addressCountry": "KE"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Kenya"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://yolo-safaris.onrender.com/#website",
+        "url": "https://yolo-safaris.onrender.com/",
+        "name": "YOLO Safaris",
+        "inLanguage": "en",
+        "publisher": {
+          "@id": "https://yolo-safaris.onrender.com/#organization"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://yolo-safaris.onrender.com/#webpage",
+        "url": "https://yolo-safaris.onrender.com/",
+        "name": "YOLO Safaris | 6 Days / 5 Nights in Kenya from USD 3,200",
+        "description": "Two guided 6-day, 5-night routes from Nairobi: the Rift Valley and the Maasai Mara, or Mombasa and Diani. From USD 3,200 per guest.",
+        "inLanguage": "en",
+        "isPartOf": {
+          "@id": "https://yolo-safaris.onrender.com/#website"
+        },
+        "about": {
+          "@id": "https://yolo-safaris.onrender.com/#organization"
+        },
+        "creator": {
+          "@type": "Organization",
+          "name": "Web Bloom Tech Kenya",
+          "url": "https://webloomtechkenya.com/"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://yolo-safaris.onrender.com/#faq",
+        "url": "https://yolo-safaris.onrender.com/",
+        "inLanguage": "en",
+        "isPartOf": {
+          "@id": "https://yolo-safaris.onrender.com/#website"
+        },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Which route should I choose?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Choose the Western Circuit for game drives, Rift Valley lakes and a Maasai village. Choose the Coast Circuit for history, beaches and a slower pace. Both cost the same."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is the price per person?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. USD 3,200 is per guest for the 6 days and 5 nights in-Kenya stay, on either route. Ask us about solo travellers and single-room options."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need a visa for Kenya?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most visitors need to apply for Kenyan travel authorisation before arrival. Check the current rule for your passport. It is not included in the package."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is it safe?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You travel with a driver-guide and stay in established lodges and hotels. Ask us anything specific about your route and we will answer honestly."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I change the dates or the itinerary?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Often, yes. Send us the dates you want and what you would like to change, and we will quote the adjusted trip."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if I am vegetarian, vegan or have allergies?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tell us in the enquiry. Meals are included as per the itinerary and we pass your dietary needs to every lodge on the route."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is not included?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "International flights, Kenyan visa or eVisa, travel insurance, souvenirs and personal extras, and tips."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I pay?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We send full payment details once your dates are confirmed. Ask us which methods we accept from your country."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How many people are on a group trip?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ask us for the group size on the dates you are considering."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 
   <link rel="stylesheet" href="css/styles.css">
 </head>

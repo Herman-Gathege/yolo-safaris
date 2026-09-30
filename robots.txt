@@ -1,0 +1,6 @@
+# YOLO Safaris. Every page on this static site is public.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://yolo-safaris.onrender.com/sitemap.xml

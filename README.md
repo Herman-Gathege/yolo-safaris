@@ -48,8 +48,11 @@ under Site settings → Domain management.
 **Any other static host.** Upload the folder as-is. There is no build command
 and no output directory.
 
-Once the real domain is live, update `SITE.meta.url` in `js/content.js`. It is
-used for the canonical link and the social share tags.
+`SITE.meta.url` in `js/content.js` is the canonical origin,
+`https://yolo-safaris.onrender.com/`. It drives the canonical link, the Open
+Graph and Twitter tags, and the absolute URLs in the page heads and
+`sitemap.xml`. If the domain ever changes, update it in `js/content.js`,
+`robots.txt`, `sitemap.xml` and the static page heads together.
 
 ---
 
@@ -74,14 +77,24 @@ Nothing else needs touching. A few examples:
 | A footer line | `SITE.footer` |
 
 The price and duration are written once and reused everywhere through tokens:
-`{price}`, `{per}`, `{duration}`, `{durationLong}`, `{destinationCount}`, `{phone}`,
-`{email}`, `{year}`. Change the value in `SITE.package` and the hero, the
-itinerary, the FAQ, the footer and the emails all follow.
+`{price}`, `{per}`, `{duration}`, `{durationLong}`, `{durationAdjective}`,
+`{destinationCount}`, `{phone}`, `{email}`, `{year}`. Change the value in
+`SITE.package` and the hero, the itinerary, the FAQ, the footer and the emails
+all follow.
 
 ### Page titles and meta descriptions
 
 `SITE.pages` holds one entry per page. Destination pages have their own
 `metaTitle` / `metaDescription` inside `SITE.destinations`.
+
+Because the pages are rendered by JavaScript, each HTML file also carries a
+static copy of its title, description, canonical URL, Open Graph tags and
+JSON-LD, so crawlers that do not run JavaScript still see them. After editing a
+title or description in `js/content.js`, regenerate the static copies:
+
+```
+node scripts/gen-seo-heads.mjs
+```
 
 ### Which sections appear on which page
 
@@ -185,6 +198,9 @@ about.html                     about us, with a parallax hero
 destinations.html              all destinations grouped by region, with a parallax hero
 destinations/<slug>.html       one page per destination (seven), each with a parallax hero
 contact.html                   contact and booking form, with a parallax hero
+robots.txt                     allows all crawlers and points to the sitemap
+sitemap.xml                    the public pages, all on the canonical origin
+scripts/gen-seo-heads.mjs      regenerates the static SEO head of every page
 css/styles.css                 all styling, every token in one :root block
 js/content.js                  ALL copy and data. The only file you edit
 js/app.js                      renders the pages from content.js
@@ -249,7 +265,8 @@ Search `js/content.js` for `TODO(owner)`.
 10. **Photography.** Every image is a generated placeholder except the home
     hero and the share image, which are crops from the brochure. Replace them
     with real photographs when you have them.
-11. **Site URL.** `SITE.meta.url`, once the domain is live.
+11. **Site URL.** Done: `SITE.meta.url` is `https://yolo-safaris.onrender.com/`,
+    and `robots.txt`, `sitemap.xml` and the page heads use the same origin.
 
 ---
 

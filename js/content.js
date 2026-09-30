@@ -8,8 +8,8 @@
    Values are written once and reused through tokens, so a price or a phone
    number only has to be right in one place:
 
-     {price}  {per}  {duration}  {durationLong}  {destinationCount}  {phone}
-     {email}  {year}
+     {price}  {per}  {duration}  {durationLong}  {durationAdjective}
+     {destinationCount}  {phone}  {email}  {year}
 
    The two routes
    --------------------------------------------------------------------------
@@ -43,7 +43,8 @@
         long. Confirm the overnight stop, see SITE.routes (western).
      9. Real photography. Any path ending in .svg is a placeholder waiting
         for a photo.
-    10. Site URL once the domain is live, see SITE.meta.url.
+    10. Site URL. SITE.meta.url holds the canonical origin. If it ever moves,
+        update it here plus robots.txt, sitemap.xml and the static page heads.
    ========================================================================== */
 
 const SITE = {
@@ -56,8 +57,9 @@ const SITE = {
      `pages` below, one entry per page. */
   meta: {
     siteName: "YOLO Safaris",
-    // TODO(owner): replace with the real address once the domain is live.
-    url: "https://yolosafaris.co.ke/",
+    // The canonical origin. Used for canonical links, Open Graph and Twitter
+    // tags, and the absolute URLs in the static page heads and sitemap.xml.
+    url: "https://yolo-safaris.onrender.com/",
     shareImage: "assets/social-share.jpg",
   },
 
@@ -67,9 +69,8 @@ const SITE = {
     home: {
       title: "YOLO Safaris | {duration} in Kenya from {price}",
       description:
-        "Two guided {durationLong} routes from Nairobi: west through the " +
-        "Rift Valley to the Maasai Mara, or East to Mombasa and Diani. From " +
-        "{price} per guest, with accommodation, park fees and meals included.",
+        "Two guided {durationAdjective} routes from Nairobi: the Rift Valley " +
+        "and the Maasai Mara, or Mombasa and Diani. From {price} per guest.",
     },
     about: {
       title: "About YOLO Safaris, a Kenya-based safari operator",
@@ -86,7 +87,7 @@ const SITE = {
     contact: {
       title: "Contact and booking enquiries | YOLO Safaris",
       description:
-        "Send a booking enquiry for a {durationLong} Kenya safari from " +
+        "Send a booking enquiry for a {durationAdjective} Kenya safari from " +
         "{price} per guest. Email, phone and WhatsApp, or use the form.",
     },
     destination: {
@@ -111,8 +112,10 @@ const SITE = {
     per: "per guest",
     duration: "6 Days / 5 Nights",
     durationLong: "6 days and 5 nights",
+    // Reads naturally mid-sentence, where "6 days and 5 nights routes" does not.
+    durationAdjective: "6-day, 5-night",
     // TODO(owner): the brochure says "7 Day Stay in Kenya". Confirm the final
-    // figure, then update `duration` and `durationLong` above.
+    // figure, then update `duration`, `durationLong` and `durationAdjective`.
   },
 
   contact: {
@@ -155,6 +158,11 @@ const SITE = {
     exploreTitle: "Explore",
     destinationsTitle: "Destinations",
     contactTitle: "Contact",
+    credit: {
+      line: "Site by",
+      label: "Web Bloom Tech Kenya",
+      href: "https://webloomtechkenya.com/",
+    },
     smallPrint:
       "© {year} YOLO Safaris. All prices in US dollars. Package price and " +
       "itinerary are confirmed in writing when you book.",
