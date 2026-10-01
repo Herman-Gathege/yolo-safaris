@@ -66,31 +66,36 @@ const SITE = {
      destination pages, which override it from their own entry in `destinations`. */
   pages: {
     home: {
-      title: "YOLO Safaris | {duration} in Kenya from {price}",
+      /* "Kenya" sits in every title: the plain brand name is shared with other
+         operators, so the country is what tells search engines which one this is. */
+      title: "YOLO Safaris Kenya | {duration} Safari from {price}",
       description:
-        "Two guided {durationAdjective} routes from Nairobi: the Rift Valley " +
-        "and the Maasai Mara, or Mombasa and Diani. From {price} per guest.",
+        "Two guided {durationAdjective} Kenya safari routes from Nairobi: the " +
+        "Rift Valley and the Maasai Mara, or Mombasa and Diani Beach. From " +
+        "{price} per guest, with accommodation and park fees included.",
     },
     about: {
-      title: "About YOLO Safaris, a Kenya-based safari operator",
+      title: "About YOLO Safaris | Kenya Safari Operator in Nakuru",
       description:
-        "Who we are, where we operate in Kenya, and how a portion of every " +
-        "booking funds community charity work through Tembea Kenya.",
+        "A Kenya-based safari operator working out of Nakuru. Where we run " +
+        "our two routes, and how a portion of every booking funds community " +
+        "charity work through Tembea Kenya.",
     },
     destinations: {
-      title: "Destinations: two routes through Kenya | YOLO Safaris",
+      title: "Kenya Safari Destinations: Mara, Nakuru, Diani | YOLO Safaris",
       description:
         "Every stop on the Western Circuit to the Maasai Mara and the Coast " +
-        "Circuit to Mombasa and Diani, all included in the package price.",
+        "Circuit to Mombasa and Diani Beach, all included in the Kenya safari " +
+        "package price.",
     },
     contact: {
-      title: "Contact and booking enquiries | YOLO Safaris",
+      title: "Contact YOLO Safaris | Book a Kenya Safari from {price}",
       description:
         "Send a booking enquiry for a {durationAdjective} Kenya safari from " +
         "{price} per guest. Email, phone and WhatsApp, or use the form.",
     },
     destination: {
-      title: "Destinations | YOLO Safaris",
+      title: "Kenya Safari Destinations | YOLO Safaris",
       description: "A stop on a YOLO Safaris route through Kenya.",
     },
   },
@@ -742,7 +747,8 @@ const SITE = {
 
     /* Formspree form connected to yolosafaris@gmail.com. Submissions are
        emailed there. Manage the form, spam settings and allowed domains at
-       formspree.io. */
+       formspree.io. See the README for why those emails can land in Spam and
+       how to fix it. */
     endpoint: "https://formspree.io/f/xjykzaal",
     subject: "New YOLO Safaris booking enquiry",
 
@@ -954,7 +960,7 @@ const SITE = {
       name: "Lake Elementaita",
       region: "Western Circuit",
       blurb: "Rift Valley soda lake, known for its birdlife.",
-      metaTitle: "Lake Elementaita: Rift Valley birdlife | YOLO Safaris",
+      metaTitle: "Lake Elementaita, Kenya: Rift Valley birdlife | YOLO Safaris",
       metaDescription:
         "Day 3 of the Western Circuit: an afternoon on the shore of Lake " +
         "Elementaita, beside Soysambu Conservancy.",
@@ -1028,7 +1034,7 @@ const SITE = {
       name: "Thomsons Falls",
       region: "Western Circuit",
       blurb: "A 74-metre waterfall on the edge of Nyahururu town.",
-      metaTitle: "Thomsons Falls, Nyahururu | YOLO Safaris",
+      metaTitle: "Thomsons Falls, Nyahururu: a Kenya safari stop | YOLO Safaris",
       metaDescription:
         "Day 4 of the Western Circuit: an afternoon at Thomsons Falls, the " +
         "74-metre waterfall at Nyahururu.",
@@ -1102,7 +1108,7 @@ const SITE = {
       name: "Maasai Village",
       region: "Western Circuit",
       blurb: "An afternoon with a Maasai community on the edge of the Mara.",
-      metaTitle: "Maasai Village visit | YOLO Safaris",
+      metaTitle: "Maasai Village Visit on a Kenya Safari | YOLO Safaris",
       metaDescription:
         "Day 5 of the Western Circuit: a visit to a Maasai village on the " +
         "road into the Maasai Mara.",
@@ -1139,7 +1145,7 @@ const SITE = {
       name: "Maasai Mara",
       region: "Western Circuit",
       blurb: "Kenya’s best-known reserve: big cats, plains and the great migration.",
-      metaTitle: "Maasai Mara: game drives and the great migration | YOLO Safaris",
+      metaTitle: "Maasai Mara Safari: game drives and the migration | YOLO Safaris",
       metaDescription:
         "Days 5 and 6 of the Western Circuit: afternoon and morning game " +
         "drives in the Maasai Mara.",
@@ -1179,7 +1185,7 @@ const SITE = {
       name: "Mombasa",
       region: "Coast Circuit",
       blurb: "Indian Ocean port city and the base for the Coast Circuit.",
-      metaTitle: "Mombasa: old town and the Indian Ocean | YOLO Safaris",
+      metaTitle: "Mombasa Safari: old town and the Indian Ocean | YOLO Safaris",
       metaDescription:
         "Days 2 to 4 of the Coast Circuit: the train from Nairobi and three " +
         "days based in Mombasa, Kenya’s Indian Ocean port.",
@@ -1218,7 +1224,7 @@ const SITE = {
       name: "Haller Park",
       region: "Coast Circuit",
       blurb: "A former quarry turned nature park, with giraffe, hippo and giant tortoises.",
-      metaTitle: "Haller Park, Bamburi | YOLO Safaris",
+      metaTitle: "Haller Park, Bamburi: a stop on a Mombasa safari | YOLO Safaris",
       metaDescription:
         "Day 2 of the Coast Circuit: an afternoon at Haller Park, a former " +
         "quarry turned nature park north of Mombasa.",
@@ -1293,7 +1299,7 @@ const SITE = {
       name: "Mamba Village",
       region: "Coast Circuit",
       blurb: "Crocodile farm and gardens in Nyali.",
-      metaTitle: "Mamba Village, Nyali | YOLO Safaris",
+      metaTitle: "Mamba Village, Nyali: crocodile farm in Mombasa | YOLO Safaris",
       metaDescription:
         "Day 4 of the Coast Circuit: a morning at Mamba Village, the " +
         "crocodile farm in Nyali.",
@@ -1330,7 +1336,7 @@ const SITE = {
       name: "Wild Waters",
       region: "Coast Circuit",
       blurb: "Water park in Nyali with slides, pools and rides.",
-      metaTitle: "Wild Waters, Nyali | YOLO Safaris",
+      metaTitle: "Wild Waters, Nyali: water park in Mombasa | YOLO Safaris",
       metaDescription:
         "Day 4 of the Coast Circuit: an afternoon at Wild Waters, the water " +
         "park in Nyali.",
@@ -1370,7 +1376,7 @@ const SITE = {
       name: "Diani",
       region: "Coast Circuit",
       blurb: "White-sand beach south of Mombasa. The resting stop.",
-      metaTitle: "Diani Beach: the closing stop | YOLO Safaris",
+      metaTitle: "Diani Beach Safari in Kenya | YOLO Safaris",
       metaDescription:
         "Days 5 and 6 of the Coast Circuit: Diani Beach, south of Mombasa, " +
         "where the trip slows down before the journey home.",

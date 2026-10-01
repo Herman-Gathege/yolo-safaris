@@ -6,14 +6,18 @@
 
   <!-- Structure only. Copy, title and meta description come from the matching
        entry in SITE.destinations (js/content.js), chosen by data-destination below. -->
-  <title>Haller Park, Bamburi | YOLO Safaris</title>
+  <title>Haller Park, Bamburi: a stop on a Mombasa safari | YOLO Safaris</title>
   <meta name="description" content="Day 2 of the Coast Circuit: an afternoon at Haller Park, a former quarry turned nature park north of Mombasa.">
   <link rel="canonical" href="https://yolo-safaris.onrender.com/destinations/haller-park.html">
-  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="theme-color" content="#003d13">
 
-  <!-- Icons generated from assets/logo.jpeg. See the README. -->
-  <link rel="icon" href="../assets/favicon.ico" sizes="any">
+  <!-- Icons generated from assets/logo-mark.png. See the README.
+       Google shows the 48x48 and 96x96 PNGs next to the title in search
+       results, so both are declared even though browsers prefer the .ico. -->
+  <link rel="icon" href="../favicon.ico" sizes="32x32 48x48">
+  <link rel="icon" type="image/png" sizes="48x48" href="../assets/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon-96.png">
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon-192.png">
   <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
@@ -22,15 +26,17 @@
        SITE.pages and SITE.destinations when the page runs. -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="YOLO Safaris">
-  <meta property="og:title" content="Haller Park, Bamburi | YOLO Safaris">
+  <meta property="og:locale" content="en_KE">
+  <meta property="og:title" content="Haller Park, Bamburi: a stop on a Mombasa safari | YOLO Safaris">
   <meta property="og:description" content="Day 2 of the Coast Circuit: an afternoon at Haller Park, a former quarry turned nature park north of Mombasa.">
   <meta property="og:url" content="https://yolo-safaris.onrender.com/destinations/haller-park.html">
   <meta property="og:image" content="https://yolo-safaris.onrender.com/assets/social-share.jpg">
+  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="YOLO Safaris logo beside elephants, giraffes and acacia trees on the Kenyan savanna">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Haller Park, Bamburi | YOLO Safaris">
+  <meta name="twitter:title" content="Haller Park, Bamburi: a stop on a Mombasa safari | YOLO Safaris">
   <meta name="twitter:description" content="Day 2 of the Coast Circuit: an afternoon at Haller Park, a former quarry turned nature park north of Mombasa.">
   <meta name="twitter:image" content="https://yolo-safaris.onrender.com/assets/social-share.jpg">
   <meta name="twitter:image:alt" content="YOLO Safaris logo beside elephants, giraffes and acacia trees on the Kenyan savanna">
@@ -44,12 +50,32 @@
         "@type": "TravelAgency",
         "@id": "https://yolo-safaris.onrender.com/#organization",
         "name": "YOLO Safaris",
+        "alternateName": "YOLO Safaris Kenya",
         "url": "https://yolo-safaris.onrender.com/",
-        "logo": "https://yolo-safaris.onrender.com/assets/logo.jpeg",
-        "image": "https://yolo-safaris.onrender.com/assets/social-share.jpg",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://yolo-safaris.onrender.com/assets/logo-512.png",
+          "width": 512,
+          "height": 512,
+          "caption": "YOLO Safaris logo"
+        },
+        "image": "https://yolo-safaris.onrender.com/assets/logo-512.png",
+        "slogan": "More than a holiday, a journey with purpose.",
         "description": "A Kenya-based tour operator running guided safari routes from Nairobi through the Rift Valley to the Maasai Mara, and to Mombasa and Diani.",
         "email": "yolosafaris@gmail.com",
         "telephone": "+254 727 720 566",
+        "priceRange": "USD 3,200 per guest",
+        "currenciesAccepted": "USD",
+        "knowsAbout": [
+          "Kenya safari",
+          "Safari from Nairobi",
+          "Maasai Mara safari",
+          "Rift Valley lakes",
+          "Lake Nakuru National Park",
+          "Diani Beach",
+          "Mombasa",
+          "Wildlife and cultural tours in Kenya"
+        ],
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Nakuru",
@@ -58,13 +84,179 @@
         "areaServed": {
           "@type": "Country",
           "name": "Kenya"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "reservations",
+          "telephone": "+254 727 720 566",
+          "email": "yolosafaris@gmail.com",
+          "url": "https://yolo-safaris.onrender.com/contact.html",
+          "areaServed": {
+            "@type": "Country",
+            "name": "Kenya"
+          },
+          "availableLanguage": [
+            "en"
+          ]
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Kenya safari packages",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "Western Circuit: Nairobi to the Maasai Mara",
+              "description": "Rift Valley lakes, a geothermal spa, a waterfall and a Maasai village, ending with game drives in the Mara.",
+              "priceCurrency": "USD",
+              "price": "3200",
+              "availability": "https://schema.org/InStock",
+              "url": "https://yolo-safaris.onrender.com/contact.html",
+              "itemOffered": {
+                "@type": "TouristTrip",
+                "name": "Western Circuit Kenya safari, 6 Days / 5 Nights",
+                "description": "Rift Valley lakes, a geothermal spa, a waterfall and a Maasai village, ending with game drives in the Mara.",
+                "touristType": [
+                  "Group trips",
+                  "Family trips",
+                  "Solo trips"
+                ],
+                "itinerary": {
+                  "@type": "ItemList",
+                  "numberOfItems": 9,
+                  "itemListElement": [
+                    {
+                      "@type": "ListItem",
+                      "position": 1,
+                      "name": "Nairobi",
+                      "item": "https://yolo-safaris.onrender.com/destinations/nairobi.html"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 2,
+                      "name": "Geothermal Spa",
+                      "item": "https://yolo-safaris.onrender.com/destinations/geothermal-spa.html"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 3,
+                      "name": "Soysambu Conservancy",
+                      "item": "https://yolo-safaris.onrender.com/destinations/soysambu-conservancy.html"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 4,
+                      "name": "Lake Elementaita",
+                      "item": "https://yolo-safaris.onrender.com/destinations/lake-elementaita.html"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 5,
+                      "name": "Lake Nakuru National Park",
+                      "item": "https://yolo-safaris.onrender.com/destinations/lake-nakuru.html"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 6,
+                      "name": "Thomsons Falls",
+                      "item": "https://yolo-safaris.onrender.com/destinations/thomsons-falls.html"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 7,
+                      "name": "Narok",
+                      "item": "https://yolo-safaris.onrender.com/destinations/narok.html"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 8,
+                      "name": "Maasai Village",
+                      "item": "https://yolo-safaris.onrender.com/destinations/maasai-village.html"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 9,
+                      "name": "Maasai Mara",
+                      "item": "https://yolo-safaris.onrender.com/destinations/maasai-mara.html"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Coast Circuit: Nairobi to Mombasa and Diani",
+              "description": "The train to the Coast, then Mombasa’s history, wildlife parks and a water park, ending on Diani Beach.",
+              "priceCurrency": "USD",
+              "price": "3200",
+              "availability": "https://schema.org/InStock",
+              "url": "https://yolo-safaris.onrender.com/contact.html",
+              "itemOffered": {
+                "@type": "TouristTrip",
+                "name": "Coast Circuit Kenya safari, 6 Days / 5 Nights",
+                "description": "The train to the Coast, then Mombasa’s history, wildlife parks and a water park, ending on Diani Beach.",
+                "touristType": [
+                  "Group trips",
+                  "Family trips",
+                  "Solo trips"
+                ],
+                "itinerary": {
+                  "@type": "ItemList",
+                  "numberOfItems": 7,
+                  "itemListElement": [
+                    {
+                      "@type": "ListItem",
+                      "position": 1,
+                      "name": "Nairobi",
+                      "item": "https://yolo-safaris.onrender.com/destinations/nairobi.html"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 2,
+                      "name": "Mombasa",
+                      "item": "https://yolo-safaris.onrender.com/destinations/mombasa.html"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 3,
+                      "name": "Haller Park",
+                      "item": "https://yolo-safaris.onrender.com/destinations/haller-park.html"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 4,
+                      "name": "Fort Jesus",
+                      "item": "https://yolo-safaris.onrender.com/destinations/fort-jesus.html"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 5,
+                      "name": "Mamba Village",
+                      "item": "https://yolo-safaris.onrender.com/destinations/mamba-village.html"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 6,
+                      "name": "Wild Waters",
+                      "item": "https://yolo-safaris.onrender.com/destinations/wild-waters.html"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 7,
+                      "name": "Diani",
+                      "item": "https://yolo-safaris.onrender.com/destinations/diani.html"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
         }
       },
       {
         "@type": "WebPage",
         "@id": "https://yolo-safaris.onrender.com/destinations/haller-park.html#webpage",
         "url": "https://yolo-safaris.onrender.com/destinations/haller-park.html",
-        "name": "Haller Park, Bamburi | YOLO Safaris",
+        "name": "Haller Park, Bamburi: a stop on a Mombasa safari | YOLO Safaris",
         "description": "Day 2 of the Coast Circuit: an afternoon at Haller Park, a former quarry turned nature park north of Mombasa.",
         "inLanguage": "en",
         "isPartOf": {

@@ -1,60 +1,169 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<!-- lastmod is the date the page's words or its SEO head last changed. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://yolo-safaris.onrender.com/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/home-hero.jpeg</image:loc>
+      <image:title>YOLO Safaris Kenya safari</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://yolo-safaris.onrender.com/about.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/about-hero.jpeg</image:loc>
+      <image:title>About YOLO Safaris, a Kenya safari operator</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://yolo-safaris.onrender.com/destinations.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/destinations-hero.jpeg</image:loc>
+      <image:title>Kenya safari destinations</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://yolo-safaris.onrender.com/contact.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/contact-hero.jpeg</image:loc>
+      <image:title>Book a Kenya safari with YOLO Safaris</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://yolo-safaris.onrender.com/destinations/nairobi.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/destinations/nairobi-3.jpg</image:loc>
+      <image:title>Nairobi city centre, the start of both YOLO Safaris routes</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/destinations/nairobi.jpg</image:loc>
+      <image:title>Nairobi, Kenya</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://yolo-safaris.onrender.com/destinations/geothermal-spa.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/destinations/geothermal-spa-3.jpg</image:loc>
+      <image:title>The Olkaria Geothermal Spa near Naivasha, Rift Valley</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://yolo-safaris.onrender.com/destinations/soysambu-conservancy.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/destinations/soysambu-conservancy-2.jpg</image:loc>
+      <image:title>Lake Elementaita and the escarpment from Soysambu Conservancy</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://yolo-safaris.onrender.com/destinations/lake-elementaita.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/destinations/lake-elementaita-4.jpg</image:loc>
+      <image:title>Lake Elementaita in the Rift Valley, Kenya</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://yolo-safaris.onrender.com/destinations/lake-nakuru.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/destinations/lake-nakuru.jpg</image:loc>
+      <image:title>Acacia woodland in Lake Nakuru National Park</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://yolo-safaris.onrender.com/destinations/thomsons-falls.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/destinations/thomsons-falls-5.jpg</image:loc>
+      <image:title>Thomsons Falls at Nyahururu, Kenya</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://yolo-safaris.onrender.com/destinations/narok.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/destinations/narok-2.jpg</image:loc>
+      <image:title>Narok, the road into the Maasai Mara</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://yolo-safaris.onrender.com/destinations/maasai-village.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/destinations/beadwork.jpeg</image:loc>
+      <image:title>Maasai beadwork at a village on the Western Circuit</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://yolo-safaris.onrender.com/destinations/maasai-mara.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/destinations/maasai-mara.jpeg</image:loc>
+      <image:title>The Maasai Mara on a YOLO Safaris game drive</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/destinations/maasai-mara-3.jpg</image:loc>
+      <image:title>Game drive in the Maasai Mara, Kenya</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://yolo-safaris.onrender.com/destinations/mombasa.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/destinations/mombasa.jpg</image:loc>
+      <image:title>Mombasa, Kenya's Indian Ocean port</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://yolo-safaris.onrender.com/destinations/haller-park.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/destinations/haller-park.jpg</image:loc>
+      <image:title>Giant tortoises at Haller Park, Bamburi</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://yolo-safaris.onrender.com/destinations/fort-jesus.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/destinations/fort-jesus.jpg</image:loc>
+      <image:title>Inside the stone passage at Fort Jesus, Mombasa</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://yolo-safaris.onrender.com/destinations/mamba-village.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/destinations/mamba-village-4.jpg</image:loc>
+      <image:title>The gardens at Mamba Village, Nyali</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://yolo-safaris.onrender.com/destinations/wild-waters.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/destinations/wild-waters.jpg</image:loc>
+      <image:title>Slides and pools at Wild Waters in Nyali, Mombasa</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://yolo-safaris.onrender.com/destinations/diani.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/destinations/diani.jpg</image:loc>
+      <image:title>Aerial view of Diani Beach, Kenya</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://yolo-safaris.onrender.com/images/destinations/diani-4.jpg</image:loc>
+      <image:title>Sunrise over Diani Beach, south of Mombasa</image:title>
+    </image:image>
   </url>
 </urlset>

@@ -6,8 +6,10 @@ const URL_BASE = "https://yolo-safaris.onrender.com";
 const SHARE_IMAGE = URL_BASE + "/assets/social-share.jpg";
 const SHARE_ALT =
   "YOLO Safaris logo beside elephants, giraffes and acacia trees on the Kenyan savanna";
+const LOGO_IMAGE = URL_BASE + "/assets/logo-512.png";
 const ORG_ID = URL_BASE + "/#organization";
 const SITE_ID = URL_BASE + "/#website";
+const CONTACT_URL = URL_BASE + "/contact.html";
 
 const SITE = eval(readFileSync("js/content.js", "utf8") + "\n;SITE");
 
@@ -40,20 +42,89 @@ const ORGANISATION = {
   "@type": "TravelAgency",
   "@id": ORG_ID,
   name: SITE.meta.siteName,
+  /* The plain brand name is shared by other operators. `alternateName` and the
+     location fields tell search engines which "YOLO Safaris" this is. */
+  alternateName: "YOLO Safaris Kenya",
   url: URL_BASE + "/",
-  logo: URL_BASE + "/assets/logo.jpeg",
-  image: SHARE_IMAGE,
+  logo: {
+    "@type": "ImageObject",
+    url: LOGO_IMAGE,
+    width: 512,
+    height: 512,
+    caption: "YOLO Safaris logo",
+  },
+  image: LOGO_IMAGE,
+  slogan: SITE.brand.positioning,
   description:
     "A Kenya-based tour operator running guided safari routes from Nairobi " +
     "through the Rift Valley to the Maasai Mara, and to Mombasa and Diani.",
   email: SITE.contact.email,
   telephone: SITE.contact.phoneDisplay,
+  priceRange: SITE.package.price + " " + SITE.package.per,
+  currenciesAccepted: "USD",
+  knowsAbout: [
+    "Kenya safari",
+    "Safari from Nairobi",
+    "Maasai Mara safari",
+    "Rift Valley lakes",
+    "Lake Nakuru National Park",
+    "Diani Beach",
+    "Mombasa",
+    "Wildlife and cultural tours in Kenya",
+  ],
   address: {
     "@type": "PostalAddress",
     addressLocality: "Nakuru",
     addressCountry: "KE",
   },
   areaServed: { "@type": "Country", name: "Kenya" },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "reservations",
+    telephone: SITE.contact.phoneDisplay,
+    email: SITE.contact.email,
+    url: CONTACT_URL,
+    areaServed: { "@type": "Country", name: "Kenya" },
+    availableLanguage: ["en"],
+  },
+  /* The two routes, priced, so search engines can read the packages as
+     bookable offers rather than as prose. */
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Kenya safari packages",
+    itemListElement: SITE.routes.map(function (route) {
+      return {
+        "@type": "Offer",
+        name: route.name + ": " + route.from + " to " + route.to,
+        description: route.line,
+        priceCurrency: "USD",
+        price: String(SITE.package.price).replace(/[^0-9.]/g, "") || undefined,
+        availability: "https://schema.org/InStock",
+        url: CONTACT_URL,
+        itemOffered: {
+          "@type": "TouristTrip",
+          name: route.name + " Kenya safari, " + SITE.package.duration,
+          description: route.line,
+          touristType: ["Group trips", "Family trips", "Solo trips"],
+          itinerary: {
+            "@type": "ItemList",
+            numberOfItems: route.stops.length,
+            itemListElement: route.stops.map(function (slug, index) {
+              const stop = SITE.destinations.filter(function (d) {
+                return d.slug === slug;
+              })[0];
+              return {
+                "@type": "ListItem",
+                position: index + 1,
+                name: stop ? stop.name : slug,
+                item: stop ? URL_BASE + "/destinations/" + slug + ".html" : undefined,
+              };
+            }),
+          },
+        },
+      };
+    }),
+  },
 };
 
 function graph(nodes) {
@@ -194,11 +265,15 @@ PAGES.forEach(function (page) {
     "  <title>" + esc(title) + "</title>",
     '  <meta name="description" content="' + esc(description) + '">',
     '  <link rel="canonical" href="' + page.url + '">',
-    '  <meta name="robots" content="index, follow, max-image-preview:large">',
+    '  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">',
     '  <meta name="theme-color" content="#003d13">',
     "",
-    "  <!-- Icons generated from assets/logo.jpeg. See the README. -->",
-    '  <link rel="icon" href="' + page.prefix + 'assets/favicon.ico" sizes="any">',
+    "  <!-- Icons generated from assets/logo-mark.png. See the README.",
+    "       Google shows the 48x48 and 96x96 PNGs next to the title in search",
+    "       results, so both are declared even though browsers prefer the .ico. -->",
+    '  <link rel="icon" href="' + page.prefix + 'favicon.ico" sizes="32x32 48x48">',
+    '  <link rel="icon" type="image/png" sizes="48x48" href="' + page.prefix + 'assets/favicon-48.png">',
+    '  <link rel="icon" type="image/png" sizes="96x96" href="' + page.prefix + 'assets/favicon-96.png">',
     '  <link rel="icon" type="image/png" sizes="32x32" href="' + page.prefix + 'assets/favicon-32.png">',
     '  <link rel="icon" type="image/png" sizes="192x192" href="' + page.prefix + 'assets/favicon-192.png">',
     '  <link rel="apple-touch-icon" href="' + page.prefix + 'assets/apple-touch-icon.png">',
@@ -207,10 +282,12 @@ PAGES.forEach(function (page) {
     "       SITE.pages and SITE.destinations when the page runs. -->",
     '  <meta property="og:type" content="website">',
     '  <meta property="og:site_name" content="' + SITE.meta.siteName + '">',
+    '  <meta property="og:locale" content="en_KE">',
     '  <meta property="og:title" content="' + esc(title) + '">',
     '  <meta property="og:description" content="' + esc(description) + '">',
     '  <meta property="og:url" content="' + page.url + '">',
     '  <meta property="og:image" content="' + SHARE_IMAGE + '">',
+    '  <meta property="og:image:type" content="image/jpeg">',
     '  <meta property="og:image:width" content="1200">',
     '  <meta property="og:image:height" content="630">',
     '  <meta property="og:image:alt" content="' + esc(SHARE_ALT) + '">',
